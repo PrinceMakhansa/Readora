@@ -1,6 +1,7 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
 
 /* Body styles */
 body {
@@ -17,6 +18,11 @@ header {
     background-color: #F8EDE3; /* Secondary - Beige Cream */
     border-bottom: 1px solid rgba(0,0,0,0.05); /* subtle divider */
     align-items: center;
+}
+
+::selection {
+  background-color: #6B4F4F; /* Deep mocha */
+  color: #F8EDE3; /* Cream text */
 }
 
 /* Loader */
@@ -130,7 +136,8 @@ header {
 /* Hero section */
 .hero {
     display: flex;
-    gap: 700px;
+    justify-content: space-around;
+    gap: 400px;
     align-items: center;
     padding: 40px 5%;
     background-color: #F8EDE3; /* Secondary - Beige Cream */
@@ -143,11 +150,12 @@ header {
 }
 
 .hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cinzel', serif;
     font-size: 40px;
     color: #6B4F4F; /* Primary - Deep Mocha */
     margin-bottom: 16px;
     text-align: left;
+    font-weight: 800;
 }
 
 .hero .subtext {
@@ -164,3 +172,40 @@ header {
     font-size: 26px;
     font-family: 'Great Vibes', cursive;
 }
+
+.readora-btn {
+  position: relative;
+  color: #F8EDE3; /* Cream text */
+  overflow: hidden;
+  background: #6B4F4F; /* Deep Mocha background */
+  z-index: 1;
+  border: 2px solid #6B4F4F;
+  padding: 12px 24px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.readora-btn:hover {
+  color: #6B4F4F; /* Mocha text */
+}
+
+.readora-btn::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background: #F8EDE3; /* Cream fill on hover */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+.readora-btn:hover::before {
+  width: 100%;
+}
+
