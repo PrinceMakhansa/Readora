@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readora</title>
+    <link rel="stylesheet" href="styles.css">   
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader">
+        <lottie-player
+        src="src/loader.json"
+        background="transparent"
+        speed="1"
+        style="width: 200px; height: 200px;"
+        loop
+        autoplay>
+        </lottie-player>
+    </div>
+
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">Readora</a>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="books.html">Browse Books</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="orders.html">My Orders</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                    <h1 class="tagline">Read More, Explore More</h1>
+                    <div class="subtext">Discover your next adventure in books—handpicked stories, seamless shopping, and endless inspiration at <span class="highlight">&nbsp;Readora.</span></div>
+            </div>
+            <div class="animation-container">
+            <lottie-player
+                src="src/animation.json"
+                background="transparent"
+                speed="1"
+                style="width: 300px; height: 300px;"
+                loop
+                autoplay>
+            </lottie-player>
+            </div>
+        </section>
+    </main>
+
+
+
+    
+</body>
+</html>

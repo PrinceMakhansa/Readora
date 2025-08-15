@@ -1,0 +1,161 @@
+/* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+
+    /* Body styles */
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #F5F5F5; /* Light Gray */
+        font-family: 'Poppins', sans-serif;
+        color: #333333; /* Neutral Text */
+        line-height: 1.6;
+    }
+
+    /* Header element */
+    header {
+        background-color: #F8EDE3; /* Secondary - Beige Cream */
+        border-bottom: 1px solid rgba(0,0,0,0.05); /* subtle divider */
+        align-items: center;
+    }
+
+    #loader {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #F5F5F5; /* same as your site background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        scale: 2;
+    }
+
+    /* Navbar container */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 32px; /* Spacing */
+        background-color: #eac5b4; /* Soft cream background */
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    /* Logo */
+    .logo {
+        font-family: 'Great Vibes', cursive;
+        font-weight: 1000;
+        font-size: 28px;
+        color: #3E2C23; /* Dark brown */
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        padding-left: 20px;
+    }
+
+    /* Optional: ® symbol */
+    .logo::after {
+        content: "®";
+        font-size: 11px;
+        vertical-align: super;
+        margin-left: 2px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Navigation list */
+    .navbar nav ul {
+        display: flex;
+        list-style: none;
+        gap: 24px; /* Space between links */
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Nav links */
+    .navbar nav ul li a {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        color: #3E2C23; /* Default for light background */
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    /* Hover & Active underline effect */
+    .navbar nav ul li a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0%;
+        height: 2px;
+        background-color: #C9A66B; /* Gold underline */
+        transition: width 0.3s ease;
+    }
+
+    .navbar nav ul li a:hover {
+        color: #C9A66B; /* Gold hover */
+    }
+
+    .navbar nav ul li a:hover::after,
+    .navbar nav ul li a.active::after {
+        width: 100%;
+    }
+
+    /* Dark background variant */
+    .dark-nav {
+        background-color: #1B1F3B; /* Deep navy */
+    }
+
+    .dark-nav .logo {
+        color: #FFFFFF;
+    }
+
+    .dark-nav nav ul li a {
+        color: #FFFFFF;
+    }
+
+    .dark-nav nav ul li a:hover {
+        color: #C9A66B;
+    }
+
+
+    .hero {
+        display: flex;
+        gap: 700px;
+        align-items: center;
+        padding: 40px 5%; /* Spacing */
+        background-color:  #F8EDE3; /* Secondary - Beige Cream */
+    }
+
+    .hero-content {
+        max-width: 600px;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 40px;
+        color: #6B4F4F; /* Primary - Deep Mocha */
+        margin-bottom: 16px;
+        text-align: left;
+    }
+
+    .hero .subtext {
+        font-family: 'Poppins', sans-serif;
+        font-size: 17.6px;
+        color: #333333; /* Neutral Text */
+        line-height: 1.6;
+        text-align: left;
+    }
+    
+    .hero .subtext .highlight {
+        color: #3E2C23; /* Gold highlight */
+        font-weight: bold;
+        font-size: 26px;
+        font-family: 'Great Vibes', cursive;
+    }
