@@ -145,6 +145,8 @@ header {
 }
 
 .readora-btn {
+  text-decoration: none;
+  display: inline-block;
   position: relative;
   color: #F8EDE3;
   overflow: hidden;
