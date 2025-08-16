@@ -12,7 +12,8 @@ body
     line-height: 1.6;
 }
 
-header {
+header 
+{
     background-color: #F8EDE3;
     border-bottom: 1px solid rgba(0,0,0,0.05);
     align-items: center;
@@ -36,7 +37,8 @@ header {
     scale: 2;
 }
 
-.navbar {
+.navbar 
+{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +49,8 @@ header {
     z-index: 1000;
 }
 
-.logo {
+.logo 
+{
     font-family: 'Great Vibes', cursive;
     font-weight: 1000;
     font-size: 28px;
@@ -57,7 +60,8 @@ header {
     padding-left: 20px;
 }
 
-.logo::after {
+.logo::after
+ {
     content: "®";
     font-size: 11px;
     vertical-align: super;
@@ -65,7 +69,8 @@ header {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar nav ul {
+.navbar nav ul
+ {
     display: flex;
     list-style: none;
     gap: 24px;
@@ -192,7 +197,7 @@ footer {
 
 footer ::selection {
   background: #eac5b4;
-  color: #6B4F4F;
+  color: #3E2C23;
 }
 
 .footer-container {
@@ -236,7 +241,8 @@ footer ::selection {
 }
 
 .featured-books {
-  padding-bottom: 48px;
+  padding-bottom: 20px;
+  padding-top: 40px;
 }
 
 .featured-books h1 {
@@ -245,7 +251,7 @@ footer ::selection {
   color: #6B4F4F;
   margin-bottom: 16px;
   text-align: center;
-  padding-bottom: 5px;
+  padding-bottom: 30px;
 }
 
 .book-scroller{
@@ -268,4 +274,72 @@ footer ::selection {
 .book-scroller_inner img:hover {
   transform: scale(1.08) translateY(-8px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+/* Categories Section */
+.categories {
+  padding: 20px 40px 40px 40px;
+  background-color: #F5F5F5;
+}
+
+.categories h1 {
+  font-family: 'Merriweather', serif;
+  font-size: 28px;
+  color: #6B4F4F;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.category-list {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333333;
+  padding: 24px 20px;
+  background-color: #F8EDE3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.category-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  background-color: #EAC5B4;
+}
+
+.category-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.category-item:hover img {
+  transform: scale(1.1);
+}
+
+.category-item span {
+  font-family: 'Merriweather', serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  color: #6B4F4F;
+}
+
+.category-item:hover span {
+  color: #3E2C23;
 }
