@@ -1,36 +1,34 @@
-/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-/* Body styles */
-body {
+body 
+{
     margin: 0;
     padding: 0;
-    background-color: #F5F5F5; /* Light Gray */
+    background-color: #F5F5F5;
     font-family: 'Merriweather', serif;
-    color: #333333; /* Neutral Text */
+    color: #333333;
     line-height: 1.6;
 }
 
-/* Header element */
 header {
-    background-color: #F8EDE3; /* Secondary - Beige Cream */
-    border-bottom: 1px solid rgba(0,0,0,0.05); /* subtle divider */
+    background-color: #F8EDE3;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
     align-items: center;
 }
 
-::selection {
-  background-color: #6B4F4F; /* Deep mocha */
-  color: #F8EDE3; /* Cream text */
+::selection 
+{
+  background-color: #6B4F4F;
+  color: #F8EDE3;
 }
 
-/* Loader */
 #loader {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #F5F5F5; /* same as your site background */
+    background: #F5F5F5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,30 +36,27 @@ header {
     scale: 2;
 }
 
-/* Navbar container */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 32px;
-    background-color: #eac5b4; /* Soft cream background */
+    background-color: #eac5b4;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-/* Logo */
 .logo {
     font-family: 'Great Vibes', cursive;
     font-weight: 1000;
     font-size: 28px;
-    color: #3E2C23; /* Dark brown */
+    color: #3E2C23;
     text-decoration: none;
     letter-spacing: 0.5px;
     padding-left: 20px;
 }
 
-/* Optional: ® symbol */
 .logo::after {
     content: "®";
     font-size: 11px;
@@ -70,7 +65,6 @@ header {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Navigation list */
 .navbar nav ul {
     display: flex;
     list-style: none;
@@ -79,7 +73,6 @@ header {
     padding: 0;
 }
 
-/* Nav links with center-out underline effect */
 .navbar nav ul li a {
     font-family: 'Merriweather', serif;
     font-weight: 500;
@@ -88,7 +81,6 @@ header {
     color: #3E2C23;
     position: relative;
     transition: color 0.4s ease;
-    
 }
 
 /* Underline starts from center */
@@ -102,45 +94,24 @@ header {
     background-color: #3E2C23;
     transition: all 0.4s ease;
     border-radius: 2px;
-    
 }
 
-/* Expand underline */
 .navbar nav ul li a:hover::before {
     width: 100%;
     left: 0;
 }
 
-/* Change text color on hover */
 .navbar nav ul li a:hover {
     color: #3E2C23;
 }
 
-/* Dark background variant */
-.dark-nav {
-    background-color: #1B1F3B; /* Deep navy */
-}
-
-.dark-nav .logo {
-    color: #FFFFFF;
-}
-
-.dark-nav nav ul li a {
-    color: #FFFFFF;
-}
-
-.dark-nav nav ul li a:hover {
-    color: #C9A66B;
-}
-
-/* Hero section */
 .hero {
     display: flex;
     justify-content: space-around;
     gap: 400px;
     align-items: center;
     padding: 40px 5%;
-    background-color: #F8EDE3; /* Secondary - Beige Cream */
+    background-color: #F8EDE3;
 }
 
 .hero-content {
@@ -152,7 +123,7 @@ header {
 .hero h1 {
     font-family: 'Cinzel', serif;
     font-size: 40px;
-    color: #6B4F4F; /* Primary - Deep Mocha */
+    color: #6B4F4F;
     margin-bottom: 16px;
     text-align: left;
     font-weight: 800;
@@ -161,13 +132,13 @@ header {
 .hero .subtext {
     font-family: 'Merriweather', serif;
     font-size: 17.6px;
-    color: #333333; /* Neutral Text */
+    color: #333333;
     line-height: 1.6;
     text-align: left;
 }
 
 .hero .subtext .highlight {
-    color: #3E2C23; /* Gold highlight */
+    color: #3E2C23;
     font-weight: bold;
     font-size: 26px;
     font-family: 'Great Vibes', cursive;
@@ -175,13 +146,13 @@ header {
 
 .readora-btn {
   position: relative;
-  color: #F8EDE3; /* Cream text */
+  color: #F8EDE3;
   overflow: hidden;
-  background: #6B4F4F; /* Deep Mocha background */
+  background: #6B4F4F;
   z-index: 1;
   border: 2px solid #6B4F4F;
   padding: 12px 24px;
-    font-family: 'Merriweather', serif;
+  font-family: 'Merriweather', serif;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -190,7 +161,7 @@ header {
 }
 
 .readora-btn:hover {
-  color: #6B4F4F; /* Mocha text */
+  color: #6B4F4F;
 }
 
 .readora-btn::before {
@@ -198,7 +169,7 @@ header {
   position: absolute;
   width: 0%;
   height: 100%;
-  background: #F8EDE3; /* Cream fill on hover */
+  background: #F8EDE3;
   top: 0;
   left: 0;
   z-index: -1;
@@ -214,7 +185,7 @@ footer {
   color: #F8EDE3;
   padding: 30px 10px;
   font-family: 'Merriweather', serif;
-    user-select: text; 
+  user-select: text;
 }
 
 footer ::selection {
@@ -246,7 +217,7 @@ footer ::selection {
 }
 
 .footer-column a:hover {
-  color: #eac5b4; /* Soft cream highlight */
+  color: #eac5b4;
 }
 
 .footer-copyright {
@@ -256,7 +227,7 @@ footer ::selection {
 }
 
 .developed {
-  color: #EAC5B4; /* Soft cream */
+  color: #EAC5B4;
   font-weight: bold;
   font-family: 'merriweather', serif;
   font-size: 16px;
