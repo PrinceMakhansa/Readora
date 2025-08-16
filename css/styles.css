@@ -246,9 +246,9 @@ footer ::selection {
 }
 
 .featured-books h1 {
-  font-family: 'merriweather', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: bolder;
   color: #6B4F4F;
   margin-bottom: 16px;
   text-align: center;
@@ -284,9 +284,9 @@ footer ::selection {
 }
 
 .categories h1 {
-  font-family: 'Merriweather', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: bolder;
   color: #6B4F4F;
   margin-bottom: 40px;
   text-align: center;
