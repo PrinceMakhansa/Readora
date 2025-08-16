@@ -234,3 +234,38 @@ footer ::selection {
   font-family: 'merriweather', serif;
   font-size: 16px;
 }
+
+.featured-books {
+  padding-bottom: 48px;
+}
+
+.featured-books h1 {
+  font-family: 'merriweather', serif;
+  font-size: 24px;
+  color: #6B4F4F;
+  margin-bottom: 16px;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.book-scroller{
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.book-scroller_inner img {
+  width: 180px;
+  height: 270px;
+  object-fit: cover;
+  margin: 0 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+.book-scroller_inner img:hover {
+  transform: scale(1.08) translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
