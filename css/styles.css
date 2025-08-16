@@ -217,6 +217,11 @@ footer {
     user-select: text; 
 }
 
+footer ::selection {
+  background: #eac5b4;
+  color: #6B4F4F;
+}
+
 .footer-container {
   display: flex;
   justify-content: space-around;
@@ -244,8 +249,15 @@ footer {
   color: #eac5b4; /* Soft cream highlight */
 }
 
-.footer-copy {
+.footer-copyright {
   text-align: center;
   font-size: 14px;
   color: #F8EDE3;
+}
+
+.developed {
+  color: #EAC5B4; /* Soft cream */
+  font-weight: bold;
+  font-family: 'merriweather', serif;
+  font-size: 16px;
 }
