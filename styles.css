@@ -1,14 +1,14 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 /* Body styles */
 body {
     margin: 0;
     padding: 0;
     background-color: #F5F5F5; /* Light Gray */
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Merriweather', serif;
     color: #333333; /* Neutral Text */
     line-height: 1.6;
 }
@@ -81,7 +81,7 @@ header {
 
 /* Nav links with center-out underline effect */
 .navbar nav ul li a {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Merriweather', serif;
     font-weight: 500;
     letter-spacing: 0.5px;
     text-decoration: none;
@@ -159,7 +159,7 @@ header {
 }
 
 .hero .subtext {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Merriweather', serif;
     font-size: 17.6px;
     color: #333333; /* Neutral Text */
     line-height: 1.6;
@@ -181,7 +181,7 @@ header {
   z-index: 1;
   border: 2px solid #6B4F4F;
   padding: 12px 24px;
-  font-family: 'Poppins', sans-serif;
+    font-family: 'Merriweather', serif;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -209,3 +209,43 @@ header {
   width: 100%;
 }
 
+footer {
+  background-color: #6B4F4F;
+  color: #F8EDE3;
+  padding: 30px 10px;
+  font-family: 'Merriweather', serif;
+    user-select: text; 
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+}
+
+.footer-column a {
+  display: block;
+  color: #F8EDE3;
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+  text-align: left;
+}
+
+.footer-column a:hover {
+  color: #eac5b4; /* Soft cream highlight */
+}
+
+.footer-copy {
+  text-align: center;
+  font-size: 14px;
+  color: #F8EDE3;
+}
