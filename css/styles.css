@@ -252,34 +252,105 @@ footer ::selection {
   color: #6B4F4F;
   margin-bottom: 16px;
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 12px;
 }
 
-.book-scroller{
-  display: flex;
-  justify-content: center;
-  gap: 16px;
+.book-wrapper {
+  width: 90%;
+  max-width: 1600px;
+  margin-inline: auto;
+  position: relative;
+  height: 350px; 
+  margin-top: 32px; 
+  overflow: hidden;
+  background-color: #F5F5F5;
+  mask-image: linear-gradient(
+    to right,
+  rgba(0, 0, 0, 0),
+  rgba(0, 0, 0, 1) 15%,
+  rgba(0, 0, 0, 1) 85%,
+  rgba(0, 0, 0, 0)
+  );
+} 
+
+.book-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    #F5F5F5 0%,
+    #F5F5F500 15%,
+    #F5F5F500 85%,
+    #F5F5F5 100%
+  );
 }
 
-.book-scroller_inner img {
+@keyframes scrollLeft {
+  to {
+  left: -240px; 
+  }
+}
+
+.book {
   width: 180px;
   height: 270px;
-  object-fit: cover;
-  margin: 0 8px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  overflow: hidden;
+  border-radius: 6px;
+  position: absolute;
+  left: max(calc(210px * 10), 100%); 
+  top: calc(50% - 135px); 
+  animation-name: scrollLeft;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 3; 
 }
 
-.book-scroller_inner img:hover {
+.book img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms cubic-bezier(.2,.9,.2,1);
+  transform-origin: center;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.book-wrapper:hover .book {
+  animation-play-state: paused;
+}
+
+.book:hover {
+  z-index: 4; 
+}
+
+.book:hover img {
   transform: scale(1.08) translateY(-8px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
+
+
+.book1 { animation-delay: calc(30s / 10 * (10 - 1) * -1); }
+.book2 { animation-delay: calc(30s / 10 * (10 - 2) * -1); }
+.book3 { animation-delay: calc(30s / 10 * (10 - 3) * -1); }
+.book4 { animation-delay: calc(30s / 10 * (10 - 4) * -1); }
+.book5 { animation-delay: calc(30s / 10 * (10 - 5) * -1); }
+.book6 { animation-delay: calc(30s / 10 * (10 - 6) * -1); }
+.book7 { animation-delay: calc(30s / 10 * (10 - 7) * -1); }
+.book8 { animation-delay: calc(30s / 10 * (10 - 8) * -1); }
+.book9 { animation-delay: calc(30s / 10 * (10 - 9) * -1); }
+.book10 { animation-delay: calc(30s / 10 * (10 - 10) * -1); }
+
 
 /* Categories Section */
 .categories {
-  padding: 20px 40px 40px 40px;
+  padding: 20px 40px 60px 40px;
   background-color: #F5F5F5;
 }
 
@@ -290,15 +361,17 @@ footer ::selection {
   color: #6B4F4F;
   margin-bottom: 40px;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 .category-list {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 32px;
-  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
+  justify-items: center;
 }
 
 .category-item {
@@ -307,12 +380,13 @@ footer ::selection {
   align-items: center;
   text-decoration: none;
   color: #333333;
-  padding: 24px 20px;
+  padding: 20px 20px;
   background-color: #F8EDE3;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   min-width: 140px;
+  cursor: pointer;
 }
 
 .category-item:hover {
