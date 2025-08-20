@@ -24,6 +24,25 @@ header
   background-color: #6B4F4F;
   color: #F8EDE3;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3E2C23
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6B4F4F
+}
 
 #loader {
     position: fixed;
