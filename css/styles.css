@@ -219,7 +219,7 @@ main {
 footer {
   background-color: #6B4F4F;
   color: #F8EDE3;
-  padding: 30px 10px;
+  padding: 10px 10px;
   font-family: 'Merriweather', serif;
   user-select: text;
 }
@@ -234,11 +234,12 @@ footer ::selection {
   justify-content: space-around;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  font-size: 10px;
 }
 
 .footer-column h4 {
   margin-bottom: 12px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   font-family: 'Playfair Display', serif;
 }
@@ -246,6 +247,7 @@ footer ::selection {
 .footer-column a {
   display: block;
   color: #F8EDE3;
+  font-size: 14px;
   text-decoration: none;
   margin-bottom: 8px;
   transition: color 0.3s ease;
@@ -258,15 +260,17 @@ footer ::selection {
 
 .footer-copyright {
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   color: #F8EDE3;
+  padding-top: 20px;
+  border-top: 1px solid #EAC5B4;
 }
 
 .developed {
   color: #EAC5B4;
   font-weight: bold;
   font-family: 'merriweather', serif;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .featured-books {
