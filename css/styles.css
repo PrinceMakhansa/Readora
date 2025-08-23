@@ -19,6 +19,10 @@ header
     align-items: center;
 }
 
+main {
+    margin-top: 80px;
+}
+
 ::selection 
 {
   background-color: #6B4F4F;
@@ -41,7 +45,7 @@ header
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #6B4F4F
+  background: #6B4F4F;
 }
 
 #loader {
@@ -63,9 +67,12 @@ header
     align-items: center;
     padding: 16px 32px;
     background-color: #eac5b4;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 1000;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 10;
 }
 
 .logo 
@@ -93,7 +100,7 @@ header
     display: flex;
     list-style: none;
     gap: 24px;
-    margin: 0;
+    margin: 0px;
     padding: 0;
 }
 
@@ -135,6 +142,7 @@ header
     gap: 400px;
     align-items: center;
     padding: 40px 5%;
+    margin-top: 80px;
     background-color: #F8EDE3;
 }
 
