@@ -73,6 +73,8 @@ main {
     width: 100%;
     box-sizing: border-box;
     z-index: 10;
+    transform: translateY(0);
+    transition: top 0.3s ease;
 }
 
 .logo 
