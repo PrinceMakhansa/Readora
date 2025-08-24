@@ -5,6 +5,7 @@
 :root {
   --primary-color: #6B4F4F;
   --background-color: #F8EDE3;
+  --accent-color: #E67E22;
 }
 
 html {
@@ -156,6 +157,7 @@ main {
   /* padding: 40px 80px 50px 80px;     */
   margin-top: 80px;
   background-color: #F8EDE3;
+  margin-top: -5px;
 }
 
 .hero-content {
@@ -525,6 +527,7 @@ footer::selection {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #6B4F4F;
 }
 
 .book-card p {
@@ -536,7 +539,7 @@ footer::selection {
 .book-card .price {
   font-size: 20px;
   font-weight: 700;
-  color: #2a9d8f;
+  color: var(--accent-color);
   margin: 8px 0;
 }
 

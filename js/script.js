@@ -48,8 +48,6 @@ fetch("js/database.json")
           <img src="${book.cover}" alt="${book.title}">
         </div>
         <h3>${book.title}</h3>
-        <p><strong>Author:</strong> ${book.author}</p>
-        <p><strong>Category:</strong> ${book.category}</p>
         <p class="price">₹${book.price}</p>
         <div class="book-actions">
           <button class="buy-btn">Buy Now</button>
