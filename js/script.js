@@ -47,11 +47,13 @@ fetch("js/database.json")
         <div class="image-container">
           <img src="${book.cover}" alt="${book.title}">
         </div>
-        <h3>${book.title}</h3>
-        <p class="price">₹${book.price}</p>
-        <div class="book-actions">
-          <button class="buy-btn">Buy Now</button>
-          <button class="add-btn">Add to Cart</button>
+        <div class="book-text-content">
+          <h3>${book.title}</h3>
+          <p class="price">₹${book.price}</p>
+          <div class="book-actions">
+            <button class="buy-btn">Buy Now</button>
+            <button class="add-btn">Add to Cart</button>
+          </div>
         </div>
       `;
 
