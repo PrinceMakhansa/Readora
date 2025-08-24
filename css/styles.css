@@ -2,6 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+:root {
+  --primary-color: #6B4F4F;
+  --background-color: #F8EDE3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body 
 {
     margin: 0;
@@ -139,19 +148,24 @@ main {
 }
 
 .hero {
-    display: flex;
-    justify-content: space-around;
-    gap: 400px;
-    align-items: center;
-    padding: 40px 5%;
-    margin-top: 80px;
-    background-color: #F8EDE3;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  align-items: center;
+  padding: 80px 5%; 
+  /* padding: 40px 80px 50px 80px;     */
+  margin-top: 80px;
+  background-color: #F8EDE3;
 }
 
 .hero-content {
-    max-width: 600px;
-    margin-left: 0;
-    text-align: left;
+  max-width: 600px;
+  margin-left: 90px;
+  text-align: left;
+}
+/* Move animation-container 10px to the right */
+  .animation-container {
+    transform: translateX(-90px);
 }
 
 .hero h1 {
@@ -224,7 +238,7 @@ footer {
   user-select: text;
 }
 
-footer ::selection {
+footer::selection {
   background: #eac5b4;
   color: #3E2C23;
 }
@@ -233,9 +247,10 @@ footer ::selection {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
   font-size: 10px;
 }
+
 
 .footer-column h4 {
   margin-bottom: 12px;
@@ -249,7 +264,7 @@ footer ::selection {
   color: #F8EDE3;
   font-size: 14px;
   text-decoration: none;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   transition: color 0.3s ease;
   text-align: left;
 }
@@ -347,7 +362,7 @@ footer ::selection {
   object-fit: cover;
   border-radius: 6px;
   display: block;
-  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms cubic-bezier(.2,.9,.2,1);
+  transition: transform 300ms ease, box-shadow 300ms ease;
   transform-origin: center;
   will-change: transform;
   -webkit-backface-visibility: hidden;
@@ -363,11 +378,10 @@ footer ::selection {
 }
 
 .book:hover img {
-  transform: scale(1.08) translateY(-8px);
+  transform: scale(1.1) translateY(-8px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
   cursor: pointer;
 }
-
 
 .book1 { animation-delay: calc(30s / 10 * (10 - 1) * -1); }
 .book2 { animation-delay: calc(30s / 10 * (10 - 2) * -1); }
@@ -450,4 +464,176 @@ footer ::selection {
 
 .category-item:hover span {
   color: #3E2C23;
+}
+
+.top-selling h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: bolder;
+  color: #6B4F4F;
+  margin-bottom: 16px;
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 24px;
+  column-gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.book-card {
+  background-color: #F8EDE3;
+  border-radius: 12px;
+  width: 230px;
+  min-height: 480px;
+  padding: 15px;
+  box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 5px 3px rgba(0,0,0,0.1);
+}
+
+.book-card img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  height: 280px;
+  transition: 0.3s ease;
+}
+
+.book-card h3 {
+  font-size: 18px;
+  margin: 12px 0 6px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-card p {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.book-card .price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2a9d8f;
+  margin: 8px 0;
+}
+
+
+
+.book-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+
+.book-actions button {
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin: 0px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  min-width: 100px;
+  text-align: center;
+  border: none;
+  padding: 8px 16px;
+  font-family: 'Merriweather', serif;
+}
+
+.buy-btn {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: 2px solid var(--primary-color);
+}
+
+.buy-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(107, 79, 79, 0.3);
+}
+
+.add-btn {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.add-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(107, 79, 79, 0.2);
+}
+
+.book-card .image-container {
+  overflow: hidden;
+  border-radius: 10px; /* optional, just for smooth look */
+}
+
+.book-card .image-container img {
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover .image-container img {
+  transform: scale(1.1);
+}
+
+/* Responsive design for book cards */
+@media (max-width: 768px) {
+  .book-grid {
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .book-card {
+    width: calc(50% - 8px);
+    max-width: 200px;
+  }
+  
+  .book-card img {
+    width: 100%;
+    height: 240px;
+  }
+  
+  .book-actions button {
+    font-size: 12px;
+    min-width: 80px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-card {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .book-card img {
+    height: 300px;
+  }
 }

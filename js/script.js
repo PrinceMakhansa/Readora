@@ -27,3 +27,38 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Fetch books.json and display
+fetch("js/database.json")
+  .then(response => response.json())
+  .then(books => {
+    console.log("Books loaded:", books);
+    const container = document.getElementById("book-list");
+
+    if (!container) {
+      console.error("No element with id='book-list' found in this page.");
+      return;
+    }
+
+    books.forEach(book => {
+      const card = document.createElement("div");
+      card.classList.add("book-card");
+
+      card.innerHTML = `
+        <div class="image-container">
+          <img src="${book.cover}" alt="${book.title}">
+        </div>
+        <h3>${book.title}</h3>
+        <p><strong>Author:</strong> ${book.author}</p>
+        <p><strong>Category:</strong> ${book.category}</p>
+        <p class="price">₹${book.price}</p>
+        <div class="book-actions">
+          <button class="buy-btn">Buy Now</button>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  })
+  .catch(err => console.error("Error loading books:", err));
+

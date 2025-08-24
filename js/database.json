@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg",
+    "price": 450,
+    "category": "Self-Help"
+  },
+  {
+    "title": "Ikigai",
+    "author": "Héctor García, Francesc Miralles",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780143130727-L.jpg",
+    "price": 350,
+    "category": "Philosophy"
+  }
+]
