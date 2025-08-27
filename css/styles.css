@@ -2,10 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+/* #3E2C23 navbar brown hover color */
+
 :root {
   --primary-color: #6B4F4F;
   --background-color: #F8EDE3;
-  --accent-color: #E67E22;
+  --accent-color: #C97C5D;
 }
 
 html {
@@ -134,7 +136,7 @@ main {
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: #3E2C23;
+    background-color: var(--accent-color);
     transition: all 0.4s ease;
     border-radius: 2px;
 }
@@ -145,7 +147,7 @@ main {
 }
 
 .navbar nav ul li a:hover {
-    color: #3E2C23;
+    color: var(--accent-color) ;
 }
 
 .hero {
@@ -498,7 +500,7 @@ footer *::selection {
   column-gap: 45px; /* Increased gap to accommodate hover effects */
   justify-content: center;
   padding:10px; /* Increased padding */
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -506,7 +508,7 @@ footer *::selection {
   background-color: #F8EDE3;
   border-radius: 12px;
   width: 280px;
-  min-height: 550px;
+  min-height: 530px;
   padding: 25px 20px; /* Increased top/bottom padding for hover effects */
   box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
   text-align: center;
@@ -526,7 +528,7 @@ footer *::selection {
   width: 100%;
   max-width: 280px;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: fit;
   height: 380px;
   transition: 0.3s ease;
 }

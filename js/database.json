@@ -1,10 +1,10 @@
 [
   {
-    "title": "Harry Potter",
-    "author": "Jk Rowling",
-    "cover": "https://covers.openlibrary.org/b/isbn/9780439708180-L.jpg",
-    "price": 1500,
-    "category": "Fiction"
+  "title": "Harry Potter and the Sorcerer's Stone",
+  "author": "J.K. Rowling",
+  "cover": "https://covers.openlibrary.org/b/isbn/9780590353427-L.jpg",
+  "price": 550,
+  "category": "Fantasy"
   },
   {
     "title": "Ikigai",
@@ -12,5 +12,20 @@
     "cover": "https://covers.openlibrary.org/b/isbn/9780143130727-L.jpg",
     "price": 350,
     "category": "Philosophy"
+  },
+  {
+    "title": "Bhagavad Gita",
+    "author": "Vyasa",
+    "cover": "https://covers.openlibrary.org/b/isbn/9789391316419-L.jpg",
+    "price": 300,
+    "category": "Devotional"
+  },
+  {
+    "title": "The Da Vinci Code",
+    "author": "Dan Brown",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780307474278-L.jpg",
+    "price": 500,
+    "category": "Mystery"
   }
+
 ]
