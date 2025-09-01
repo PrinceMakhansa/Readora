@@ -5,7 +5,8 @@
 :root {
   --primary-color: #6B4F4F;
   --background-color: #F8EDE3;
-  --accent-color: #E67E22;
+  --accent-color: #C97C5D;
+  --warmorange: #FF6F20;
 }
 
 html {
@@ -134,7 +135,7 @@ main {
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: #3E2C23;
+    background-color: var(--accent-color);
     transition: all 0.4s ease;
     border-radius: 2px;
 }
@@ -145,7 +146,7 @@ main {
 }
 
 .navbar nav ul li a:hover {
-    color: #3E2C23;
+    color: var(--accent-color);
 }
 
 .hero {
