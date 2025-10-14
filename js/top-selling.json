@@ -1,0 +1,37 @@
+[
+  {
+  "title": "Harry Potter",
+  "author": "J.K. Rowling",
+  "cover": "https://covers.openlibrary.org/b/isbn/9780590353427-L.jpg",
+  "price": 550,
+  "category": "Fantasy"
+  },
+  {
+    "title": "Ikigai",
+    "author": "Héctor García, Francesc Miralles",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780143130727-L.jpg",
+    "price": 350,
+    "category": "Philosophy"
+  },
+  {
+    "title": "Bhagavad Gita",
+    "author": "Vyasa",
+    "cover": "https://covers.openlibrary.org/b/isbn/9789391316419-L.jpg",
+    "price": 300,
+    "category": "Devotional"
+  },
+  {
+    "title": "The Da Vinci Code",
+    "author": "Dan Brown",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780307474278-L.jpg",
+    "price": 500,
+    "category": "Mystery"
+  },
+  {
+  "title": "Dune",
+  "author": "Frank Herbert",
+  "cover": "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
+  "price": 720,
+  "category": "Sci-Fi"
+  }
+]

@@ -38,7 +38,7 @@ section h2::after {
     display: block;
     width: 50px;
     height: 2px;
-    background-color: #6B4F4F;
+    background-color: var(--accent-color);
     margin: 8px auto 0;
     border-radius: 2px;
 }

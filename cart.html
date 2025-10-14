@@ -1,2 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Readora</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/fevicon/readora-512.png">
+    <script src="js/script.js"></script>
+</head>
+<body>
+     <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">Readora</a>   
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="books.html">Browse Books</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="orders.html">My Orders</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div style="text-align:center; margin-top:40vh; font-size:2em; color:#888;">Under Development >_<</div>
+
+    <main>
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h1>
+                <p class="cart-subtitle">Review your selected books before checkout</p>
+            </div>
+
+            <!-- Empty Cart State -->
+            <div id="empty-cart" class="empty-cart" style="display: none;">
+                <div class="empty-cart-content">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2>Your cart is empty</h2>
+                    <p>Looks like you haven't added any books to your cart yet.</p>
+                    <div class="empty-cart-actions">
+                        <a href="books.html" class="browse-books-btn">
+                            <i class="fas fa-book"></i> Browse Books
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div id="cart-content" class="cart-content">
+                <div class="cart-table-container">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Book</th>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            <!-- Cart items will be populated here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3>Order Summary</h3>
+                        <div class="summary-row">
+                            <span>Subtotal (<span id="total-items">0</span> items)</span>
+                            <span id="subtotal">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="shipping-cost">FREE</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span id="tax">₹0</span>
+                        </div>
+                        <hr>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="total-amount">₹0</span>
+                        </div>
+                        
+                        <div class="cart-actions">
+                            <button id="clear-cart-btn" class="clear-cart-btn">
+                                <i class="fas fa-trash"></i> Clear Cart
+                            </button>
+                            <button id="checkout-btn" class="checkout-btn">
+                                <i class="fas fa-credit-card"></i> Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-credit-card"></i> Checkout</h2>
+            <form id="checkout-form">
+                <div class="form-section">
+                    <h3>Shipping Information</h3>
+                    <div class="form-group">
+                        <label for="full-name">Full Name *</label>
+                        <input type="text" id="full-name" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pincode">Pincode *</label>
+                            <input type="text" id="pincode" name="pincode" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <span class="payment-label">
+                                <i class="fas fa-money-bill-wave"></i>
+                                Cash on Delivery
+                            </span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card">
+                            <span class="payment-label">
+                                <i class="fas fa-credit-card"></i>
+                                Credit/Debit Card
+                            </span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="upi">
+                            <span class="payment-label">
+                                <i class="fas fa-mobile-alt"></i>
+                                UPI Payment
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="order-summary-modal">
+                    <h3>Order Total: <span id="modal-total">₹0</span></h3>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="place-order-btn">
+                        <i class="fas fa-check"></i> Place Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Cart-specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartItems();
+            
+            // Event listeners
+            document.getElementById('clear-cart-btn').addEventListener('click', clearCart);
+            document.getElementById('checkout-btn').addEventListener('click', openCheckoutModal);
+            document.querySelector('.close-modal').addEventListener('click', closeCheckoutModal);
+            document.querySelector('.cancel-btn').addEventListener('click', closeCheckoutModal);
+            document.getElementById('checkout-form').addEventListener('submit', placeOrder);
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('checkout-modal');
+                if (event.target === modal) {
+                    closeCheckoutModal();
+                }
+            });
+        });
+
+        function loadCartItems() {
+            const cart = getCart();
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyCart = document.getElementById('empty-cart');
+            const cartContent = document.getElementById('cart-content');
+
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                cartContent.style.display = 'none';
+                return;
+            }
+
+            emptyCart.style.display = 'none';
+            cartContent.style.display = 'block';
+
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('tr');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <td class="book-cell">
+                        <img src="${item.cover}" alt="${item.title}" loading="lazy">
+                    </td>
+                    <td class="title-cell">
+                        <div class="book-info">
+                            <h3>${item.title}</h3>
+                            <p class="author">by ${item.author}</p>
+                            <span class="category">${item.category}</span>
+                        </div>
+                    </td>
+                    <td class="price-cell">₹${item.price}</td>
+                    <td class="quantity-cell">
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="updateQuantity(${index}, -1)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${index}, 1)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td class="subtotal-cell">₹${item.price * item.quantity}</td>
+                    <td class="remove-cell">
+                        <button class="remove-btn" onclick="removeFromCart(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            updateCartSummary();
+        }
+
+        function updateQuantity(index, change) {
+            const cart = getCart();
+            if (cart[index]) {
+                cart[index].quantity += change;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+                saveCart(cart);
+                loadCartItems();
+                showToast(change > 0 ? 'Quantity increased' : 'Quantity decreased');
+            }
+        }
+
+        function removeFromCart(index) {
+            const cart = getCart();
+            const item = cart[index];
+            if (item) {
+                cart.splice(index, 1);
+                saveCart(cart);
+                loadCartItems();
+                showToast(`${item.title} removed from cart`, 'info');
+            }
+        }
+
+        function updateCartSummary() {
+            const cart = getCart();
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shippingCost = subtotal > 500 ? 0 : 50;
+            const tax = Math.round(subtotal * 0.05); // 5% tax
+            const total = subtotal + shippingCost + tax;
+
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('subtotal').textContent = `₹${subtotal}`;
+            document.getElementById('shipping-cost').textContent = shippingCost === 0 ? 'FREE' : `₹${shippingCost}`;
+            document.getElementById('tax').textContent = `₹${tax}`;
+            document.getElementById('total-amount').textContent = `₹${total}`;
+            document.getElementById('modal-total').textContent = `₹${total}`;
+        }
+
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                localStorage.removeItem('cart');
+                loadCartItems();
+                showToast('Cart cleared', 'info');
+            }
+        }
+
+        function openCheckoutModal() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                showToast('Your cart is empty', 'error');
+                return;
+            }
+            document.getElementById('checkout-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function placeOrder(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const orderData = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                items: getCart(),
+                customer: {
+                    name: formData.get('fullName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address'),
+                    city: formData.get('city'),
+                    pincode: formData.get('pincode')
+                },
+                payment: formData.get('payment'),
+                status: 'confirmed',
+                total: document.getElementById('total-amount').textContent
+            };
+
+            // Save order to localStorage
+            let orders = localStorage.getItem('orders');
+            orders = orders ? JSON.parse(orders) : [];
+            orders.unshift(orderData);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Clear cart
+            localStorage.removeItem('cart');
+
+            // Close modal and show success
+            closeCheckoutModal();
+            showToast('Order placed successfully! Redirecting to orders page...', 'success');
+
+            // Redirect to orders page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'orders.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

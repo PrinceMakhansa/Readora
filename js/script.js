@@ -4,7 +4,76 @@
       }, 1950); 
     });
 
+// Cart utility functions for all pages
+function getCart() {
+  const cart = localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartBadge();
+}
+
+function updateCartBadge() {
+  const cart = getCart();
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const badge = document.getElementById('cart-badge');
+  if (badge) {
+    badge.textContent = totalItems;
+    badge.style.display = totalItems > 0 ? 'inline-block' : 'none';
+  }
+}
+
+function showToast(message, type = 'success') {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.className = `toast show ${type}`;
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+function addToCart(book) {
+  const cart = getCart();
+  const existingItem = cart.find(item => item.title === book.title);
+  
+  if (existingItem) {
+    existingItem.quantity += 1;
+    showToast('Quantity updated in cart!');
+  } else {
+    cart.push({ ...book, quantity: 1 });
+    showToast(`${book.title} added to cart!`, 'success');
+  }
+  
+  saveCart(cart);
+}
+
+function buyNow(book) {
+  // Clear the current cart
+  localStorage.removeItem('cart');
+  
+  // Add the book to cart with quantity 1
+  const cart = [{ ...book, quantity: 1 }];
+  saveCart(cart);
+  
+  // Show toast and redirect to cart
+  showToast(`${book.title} added to cart! Redirecting to cart...`, 'success');
+  setTimeout(() => {
+    window.location.href = 'cart.html';
+  }, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Update cart badge on page load
+  updateCartBadge();
 
   const navbar = document.querySelector(".navbar");
  
@@ -25,40 +94,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
     prevScroll = currentScroll;
   });
+
+  // Fetch top-selling.json and display for index page
+  const container = document.getElementById("book-list");
+  
+  if (container) {
+    fetch("js/top-selling.json")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(books => {
+        console.log("Top selling books loaded:", books);
+
+        books.forEach(book => {
+          const card = document.createElement("div");
+          card.classList.add("book-card");
+
+          card.innerHTML = `
+            <div class="image-container">
+              <img src="${book.cover}" alt="${book.title}" loading="lazy">
+            </div>
+            <div class="book-text-content">
+              <h3>${book.title}</h3>
+              <p class="price">₹${book.price}</p>
+              <div class="book-actions">
+                <button class="buy-btn">Buy Now</button>
+                <button class="add-btn">Add to Cart</button>
+              </div>
+            </div>
+          `;
+
+          // Add event listener for "Add to Cart" button
+          const addBtn = card.querySelector('.add-btn');
+          addBtn.addEventListener('click', () => addToCart(book));
+
+          // Add event listener for "Buy Now" button
+          const buyBtn = card.querySelector('.buy-btn');
+          buyBtn.addEventListener('click', () => buyNow(book));
+
+          container.appendChild(card);
+        });
+      })
+      .catch(err => console.error("Error loading top selling books:", err));
+  }
 });
-
-// Fetch books.json and display
-fetch("js/database.json")
-  .then(response => response.json())
-  .then(books => {
-    console.log("Books loaded:", books);
-    const container = document.getElementById("book-list");
-
-    if (!container) {
-      console.error("No element with id='book-list' found in this page.");
-      return;
-    }
-
-    books.forEach(book => {
-      const card = document.createElement("div");
-      card.classList.add("book-card");
-
-      card.innerHTML = `
-        <div class="image-container">
-          <img src="${book.cover}" alt="${book.title}">
-        </div>
-        <div class="book-text-content">
-          <h3>${book.title}</h3>
-          <p class="price">₹${book.price}</p>
-          <div class="book-actions">
-            <button class="buy-btn">Buy Now</button>
-            <button class="add-btn">Add to Cart</button>
-          </div>
-        </div>
-      `;
-
-      container.appendChild(card);
-    });
-  })
-  .catch(err => console.error("Error loading books:", err));
 

@@ -6,6 +6,7 @@
     <title>Books</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/books.css">
+    <script src="js/script.js"></script>
 </head>
 <body>
     <header>
@@ -15,7 +16,10 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="books.html">Browse Books</a></li>
-                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="cart.html" style="position: relative;">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
+                    </a></li>
                     <li><a href="orders.html">My Orders</a></li>
                     <li><a href="about.html">About Us</a></li>
                 </ul>
@@ -24,15 +28,47 @@
     </header>
 
     <main>
-        <section class="quote">
-            <p class="sanskrit">"न हि ज्ञानेन सदृशं पवित्रमिह विद्यते"</p>
-            <p class="english">“In this world, there is nothing as purifying as knowledge.”</p>
-            <p class="author">— Bhagavad Gita, Chapter 4, Verse 38</p>
+        <!-- Quote removed as requested -->
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search books by title, author, or category..." autocomplete="off">
+                    <button type="button" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter Section -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <h2>Browse by Category</h2>
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">All Books</button>
+                    <button class="filter-btn" data-category="Devotional">Devotional</button>
+                    <button class="filter-btn" data-category="Fiction">Fiction</button>
+                    <button class="filter-btn" data-category="Mystery">Mystery</button>
+                    <button class="filter-btn" data-category="Sci-Fi">Sci-Fi</button>
+                    <button class="filter-btn" data-category="Historical">Historical</button>
+                    <button class="filter-btn" data-category="Romance">Romance</button>
+                    <button class="filter-btn" data-category="Educational">Educational</button>
+                    <button class="filter-btn" data-category="Comics">Comics</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Books Display Section -->
+        <section class="books-display">
+            <div id="books-container"></div>
         </section>
 
     </main>
-
-    <div style="text-align:center; font-size:2em; color:#888;">Under Development >_<</div>
 
     <footer>
         <div class="footer-container">
@@ -54,6 +90,253 @@
             © 2025 Readora. All rights reserved. | Designed & Developed by <span class="developed">Prince Makhansa</span>
         </div>
     </footer>
+
+    <script>
+        // Books page specific functionality
+        let allBooks = [];
+        let currentCategory = 'all';
+        let searchTerm = '';
+
+        // Check for category parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryFromUrl = urlParams.get('category');
+        if (categoryFromUrl) {
+            currentCategory = categoryFromUrl;
+        }
+
+        // Update cart badge on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartBadge();
+        });
+
+        // Fetch and display books
+        fetch("js/database.json")
+            .then(response => response.json())
+            .then(books => {
+                allBooks = books;
+                displayBooksByCategory(currentCategory);
+                setupCategoryFilters();
+                setupSearch();
+                
+                // Set active filter button based on URL parameter
+                if (categoryFromUrl) {
+                    setActiveFilterButton(categoryFromUrl);
+                }
+            })
+            .catch(err => console.error("Error loading books:", err));
+
+        function setActiveFilterButton(category) {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function displayBooksByCategory(category) {
+            const container = document.getElementById("books-container");
+            
+            if (!container) {
+                console.error("No element with id='books-container' found.");
+                return;
+            }
+
+            // Clear existing content
+            container.innerHTML = '';
+
+            // Filter books based on search term and category
+            let filteredBooks = allBooks;
+            
+            // Apply search filter
+            if (searchTerm) {
+                filteredBooks = filteredBooks.filter(book => 
+                    book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    book.category.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+
+            // Apply category filter
+            if (category !== 'all') {
+                filteredBooks = filteredBooks.filter(book => book.category === category);
+            }
+
+            // If no books found
+                if (filteredBooks.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 32px; color: #666; font-size: 19.2px;">No books found matching your criteria.</div>';
+                return;
+            }
+
+            // Get unique categories from filtered books
+            const categories = [...new Set(filteredBooks.map(book => book.category))];
+            
+            if (category === 'all' && !searchTerm) {
+                // Display all categories
+                categories.forEach(cat => {
+                    const categoryBooks = filteredBooks.filter(book => book.category === cat);
+                    if (categoryBooks.length > 0) {
+                        createCategorySection(container, cat, categoryBooks);
+                    }
+                });
+            } else {
+                // Display filtered results
+                if (searchTerm && category === 'all') {
+                    // Group search results by category
+                    categories.forEach(cat => {
+                        const categoryBooks = filteredBooks.filter(book => book.category === cat);
+                        if (categoryBooks.length > 0) {
+                            createCategorySection(container, cat, categoryBooks);
+                        }
+                    });
+                } else {
+                    // Display specific category or search within category
+                    const displayCategory = category !== 'all' ? category : 'Search Results';
+                    createCategorySection(container, displayCategory, filteredBooks);
+                }
+            }
+        }
+
+        function createCategorySection(container, categoryName, books) {
+            // Create category section
+            const categorySection = document.createElement('div');
+            categorySection.classList.add('category-section');
+
+            // Create category header
+            const categoryHeader = document.createElement('h2');
+            categoryHeader.classList.add('category-title');
+            categoryHeader.textContent = categoryName;
+            categorySection.appendChild(categoryHeader);
+
+            // Create books grid
+            const booksGrid = document.createElement('div');
+            booksGrid.classList.add('book-grid');
+
+            books.forEach(book => {
+                const card = document.createElement("div");
+                card.classList.add("book-card");
+
+                card.innerHTML = `
+                    <div class="image-container">
+                        <img src="${book.cover}" alt="${book.title}" loading="lazy">
+                    </div>
+                    <div class="book-text-content">
+                        <h3>${book.title}</h3>
+                        <p>by ${book.author}</p>
+                        <p class="price">₹${book.price}</p>
+                        <div class="book-actions">
+                            <button class="buy-btn" onclick="buyBook('${book.title}')">Buy Now</button>
+                            <button class="add-btn" onclick="addToCart('${book.title}')">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+
+                booksGrid.appendChild(card);
+            });
+
+            categorySection.appendChild(booksGrid);
+            container.appendChild(categorySection);
+        }
+
+        function setupCategoryFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Get category and display books
+                    currentCategory = button.getAttribute('data-category');
+                    displayBooksByCategory(currentCategory);
+                });
+            });
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+
+            // Search on button click
+            searchBtn.addEventListener('click', performSearch);
+
+            // Search on Enter key press
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Real-time search as user types (with debounce)
+            let debounceTimer;
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    performSearch();
+                }, 300); // 300ms delay
+            });
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchTerm = searchInput.value.trim();
+            displayBooksByCategory(currentCategory);
+        }
+
+        // Updated functions for buy and add to cart
+        function buyBook(title) {
+            // Find the book in the database
+            fetch('js/database.json')
+                .then(response => response.json())
+                .then(books => {
+                    const book = books.find(b => b.title === title);
+                    if (book) {
+                        // Clear the current cart
+                        localStorage.removeItem('cart');
+                        
+                        // Add the book to cart with quantity 1
+                        const cart = [{ ...book, quantity: 1 }];
+                        saveCart(cart);
+                        
+                        // Show toast and redirect to cart
+                        showToast(`${book.title} added to cart! Redirecting to cart...`, 'success');
+                        setTimeout(() => {
+                            window.location.href = 'cart.html';
+                        }, 1000);
+                    }
+                })
+                .catch(err => console.error('Error finding book:', err));
+        }
+
+        function addToCart(title) {
+            // Find the book in the database
+            fetch('js/database.json')
+                .then(response => response.json())
+                .then(books => {
+                    const book = books.find(b => b.title === title);
+                    if (book) {
+                        const cart = getCart();
+                        const existingItem = cart.find(item => item.title === book.title);
+                        
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                            showToast('Quantity updated in cart!');
+                        } else {
+                            cart.push({ ...book, quantity: 1 });
+                            showToast(`${book.title} added to cart!`, 'success');
+                        }
+                        
+                        saveCart(cart);
+                        updateCartBadge(); // Update the cart badge
+                    }
+                })
+                .catch(err => console.error('Error finding book:', err));
+        }
+    </script>
 
 </body>
 </html>

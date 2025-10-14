@@ -1,24 +1,73 @@
 [
   {
-  "title": "Harry Potter",
-  "author": "J.K. Rowling",
-  "cover": "https://covers.openlibrary.org/b/isbn/9780590353427-L.jpg",
-  "price": 550,
-  "category": "Fantasy"
-  },
-  {
-    "title": "Ikigai",
-    "author": "Héctor García, Francesc Miralles",
-    "cover": "https://covers.openlibrary.org/b/isbn/9780143130727-L.jpg",
-    "price": 350,
-    "category": "Philosophy"
-  },
-  {
     "title": "Bhagavad Gita",
     "author": "Vyasa",
     "cover": "https://covers.openlibrary.org/b/isbn/9789391316419-L.jpg",
     "price": 300,
     "category": "Devotional"
+  },
+  {
+    "title": "The Ramayana",
+    "author": "Valmiki",
+    "cover": "https://covers.openlibrary.org/b/isbn/9788129142078-L.jpg",
+    "price": 450,
+    "category": "Devotional"
+  },
+  {
+    "title": "Mahabharata",
+    "author": "Vyasa",
+    "cover": "https://covers.openlibrary.org/b/isbn/9789380708690-L.jpg",
+    "price": 600,
+    "category": "Devotional"
+  },
+  {
+    "title": "Upanishads",
+    "author": "Various",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780140447491-L.jpg",
+    "price": 400,
+    "category": "Devotional"
+  },
+  {
+    "title": "Srimad Bhagavatam",
+    "author": "Vyasa",
+    "cover": "https://covers.openlibrary.org/b/isbn/9789384564216-L.jpg",
+    "price": 700,
+    "category": "Devotional"
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg",
+    "price": 420,
+    "category": "Fiction"
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg",
+    "price": 390,
+    "category": "Fiction"
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780451524935-L.jpg",
+    "price": 380,
+    "category": "Fiction"
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780316769488-L.jpg",
+    "price": 350,
+    "category": "Fiction"
+  },
+  {
+    "title": "The Kite Runner",
+    "author": "Khaled Hosseini",
+    "cover": "https://covers.openlibrary.org/b/isbn/9781594631931-L.jpg",
+    "price": 400,
+    "category": "Fiction"
   },
   {
     "title": "The Da Vinci Code",
@@ -28,10 +77,206 @@
     "category": "Mystery"
   },
   {
-  "title": "Dune",
-  "author": "Frank Herbert",
-  "cover": "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
-  "price": 720,
-  "category": "Sci-Fi"
+    "title": "Gone Girl",
+    "author": "Gillian Flynn",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780062073488-L.jpg",
+    "price": 420,
+    "category": "Mystery"
+  },
+  {
+    "title": "Murder on the Orient Express",
+    "author": "Agatha Christie",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780007119318-L.jpg",
+    "price": 410,
+    "category": "Mystery"
+  },
+  {
+    "title": "The Girl with the Dragon Tattoo",
+    "author": "Stieg Larsson",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780307454546-L.jpg",
+    "price": 460,
+    "category": "Mystery"
+  },
+  {
+    "title": "Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780486474915-L.jpg",
+    "price": 360,
+    "category": "Mystery"
+  },
+  {
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
+    "price": 720,
+    "category": "Sci-Fi"
+  },
+  {
+    "title": "Foundation",
+    "author": "Isaac Asimov",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780553293357-L.jpg",
+    "price": 520,
+    "category": "Sci-Fi"
+  },
+  {
+    "title": "The Martian",
+    "author": "Andy Weir",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780553418026-L.jpg",
+    "price": 480,
+    "category": "Sci-Fi"
+  },
+  {
+    "title": "Ender's Game",
+    "author": "Orson Scott Card",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780812550702-L.jpg",
+    "price": 490,
+    "category": "Sci-Fi"
+  },
+  {
+    "title": "Neuromancer",
+    "author": "William Gibson",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780441569595-L.jpg",
+    "price": 530,
+    "category": "Sci-Fi"
+  },
+  {
+    "title": "The Book Thief",
+    "author": "Markus Zusak",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780375842207-L.jpg",
+    "price": 470,
+    "category": "Historical"
+  },
+  {
+    "title": "All the Light We Cannot See",
+    "author": "Anthony Doerr",
+    "cover": "https://covers.openlibrary.org/b/isbn/9781501173219-L.jpg",
+    "price": 560,
+    "category": "Historical"
+  },
+  {
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780199232765-L.jpg",
+    "price": 690,
+    "category": "Historical"
+  },
+  {
+    "title": "The Nightingale",
+    "author": "Kristin Hannah",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780312577223-L.jpg",
+    "price": 500,
+    "category": "Historical"
+  },
+  {
+    "title": "The Pillars of the Earth",
+    "author": "Ken Follett",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780451225245-L.jpg",
+    "price": 620,
+    "category": "Historical"
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "cover": "https://covers.openlibrary.org/b/isbn/9781501110368-L.jpg",
+    "price": 400,
+    "category": "Romance"
+  },
+  {
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780141439600-L.jpg",
+    "price": 380,
+    "category": "Romance"
+  },
+  {
+    "title": "The Fault in Our Stars",
+    "author": "John Green",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780142424179-L.jpg",
+    "price": 380,
+    "category": "Romance"
+  },
+  {
+    "title": "Me Before You",
+    "author": "Jojo Moyes",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780143124542-L.jpg",
+    "price": 390,
+    "category": "Romance"
+  },
+  {
+    "title": "Twilight",
+    "author": "Stephenie Meyer",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780316015844-L.jpg",
+    "price": 410,
+    "category": "Romance"
+  },
+  {
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg",
+    "price": 650,
+    "category": "Educational"
+  },
+  {
+    "title": "A Brief History of Time",
+    "author": "Stephen Hawking",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780553380163-L.jpg",
+    "price": 500,
+    "category": "Educational"
+  },
+  {
+    "title": "Educated",
+    "author": "Tara Westover",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg",
+    "price": 480,
+    "category": "Educational"
+  },
+  {
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg",
+    "price": 530,
+    "category": "Educational"
+  },
+  {
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg",
+    "price": 420,
+    "category": "Educational"
+  },
+  {
+    "title": "Batman: Year One",
+    "author": "Frank Miller",
+    "cover": "https://covers.openlibrary.org/b/isbn/9781401207526-L.jpg",
+    "price": 450,
+    "category": "Comics"
+  },
+  {
+    "title": "Spider-Man: Blue",
+    "author": "Jeph Loeb, Tim Sale",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780785110713-L.jpg",
+    "price": 430,
+    "category": "Comics"
+  },
+  {
+    "title": "Watchmen",
+    "author": "Alan Moore, Dave Gibbons",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780930289232-L.jpg",
+    "price": 600,
+    "category": "Comics"
+  },
+  {
+    "title": "V for Vendetta",
+    "author": "Alan Moore",
+    "cover": "https://covers.openlibrary.org/b/isbn/9781401207922-L.jpg",
+    "price": 520,
+    "category": "Comics"
+  },
+  {
+    "title": "The Sandman: Preludes & Nocturnes",
+    "author": "Neil Gaiman",
+    "cover": "https://covers.openlibrary.org/b/isbn/9781401225759-L.jpg",
+    "price": 580,
+    "category": "Comics"
   }
 ]

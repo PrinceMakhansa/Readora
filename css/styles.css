@@ -6,7 +6,6 @@
   --primary-color: #6B4F4F;
   --background-color: #F8EDE3;
   --accent-color: #C97C5D;
-  --warmorange: #FF6F20;
 }
 
 html {
@@ -147,6 +146,22 @@ main {
 
 .navbar nav ul li a:hover {
     color: var(--accent-color);
+}
+
+/* Cart Badge */
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: var(--warmorange);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1;
 }
 
 .hero {
@@ -324,6 +339,19 @@ footer *::selection {
   margin-bottom: 16px;
   text-align: center;
   padding-bottom: 12px;
+  position: relative;
+}
+
+.featured-books h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 .book-wrapper {
@@ -430,9 +458,22 @@ footer *::selection {
   font-size: 28px;
   font-weight: bolder;
   color: #6B4F4F;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
+  position: relative;
+}
+
+.categories h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 .category-list {
@@ -443,6 +484,7 @@ footer *::selection {
   max-width: 1200px;
   margin: 0 auto;
   justify-items: center;
+  padding-top: 30px;
 }
 
 .category-item {
@@ -498,6 +540,19 @@ footer *::selection {
   margin-bottom: 16px;
   text-align: center;
   padding-bottom: 12px;
+  position: relative;
+}
+
+.top-selling h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 
@@ -505,26 +560,27 @@ footer *::selection {
   display: flex;
   flex-wrap: wrap;
   row-gap: 50px; /* Increased gap to accommodate hover effects */
-  column-gap: 45px; /* Increased gap to accommodate hover effects */
+  column-gap: 30px; /* Reduced gap for tighter layout */
   justify-content: center;
-  padding:10px; /* Increased padding */
-  max-width: 1800px;
+  padding-top: 30px; /* Removed horizontal padding */
+  padding-bottom: 30px;
+  max-width: 100%; /* Use full width */
   margin: 0 auto;
 }
 
 .book-card {
   background-color: #F8EDE3;
   border-radius: 12px;
-  width: 280px;
-  min-height: 550px;
-  padding: 25px 20px; /* Increased top/bottom padding for hover effects */
+  width: 240px; /* Increased to accommodate image better */
+  min-height: 530px; /* Reduced to minimize extra space */
+  padding: 10px 18px; /* Slightly increased padding */
   box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
   text-align: center;
   transition: 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: visible; /* Ensure hover effects aren't cut off */
+  overflow: visible; /* Keep visible for hover effects */
 }
 
 .book-card:hover {
@@ -534,16 +590,16 @@ footer *::selection {
 
 .book-card img {
   width: 100%;
-  max-width: 280px;
+  max-width: 230px; /* Match card width */
   border-radius: 8px;
-  object-fit: cover;
-  height: 380px;
+  object-fit: fill;
+  height: 380px; /* Increased from 350px for better visibility */
   transition: 0.3s ease;
 }
 
 .book-card h3 {
-  font-size: 18px;
-  margin: 8px 0 4px;
+  font-size: 16px; /* Reduced from 18px */
+  margin: 4px 0 2px; /* Further reduced margins */
   min-height: 20px;
   display: flex;
   align-items: center;
@@ -557,10 +613,11 @@ footer *::selection {
   font-weight: 600;
   margin: 2px 0;
   line-height: 1.1;
+  font-size: 13px; /* Reduced font size */
 }
 
 .book-card .price {
-  font-size: 20px;
+  font-size: 18px; /* Reduced from 20px */
   font-weight: 700;
   color: var(--accent-color);
   margin: 4px 0 6px;
@@ -573,29 +630,29 @@ footer *::selection {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 4px; /* Reduced from 8px */
   justify-content: center;
 }
 
 .book-text-content {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0px; /* Removed gap to reduce spacing */
   align-items: center;
 }
 
 
 .book-actions button {
-  font-size: 14px;
+  font-size: 13px; /* Reduced from 14px */
   font-weight: 600;
   border-radius: 8px;
   margin: 0px;
   cursor: pointer;
   transition: 0.3s ease;
-  min-width: 100px;
+  min-width: 90px; /* Reduced from 100px */
   text-align: center;
   border: none;
-  padding: 8px 16px;
+  padding: 7px 14px; /* Reduced padding */
   font-family: 'Merriweather', serif;
 }
 
@@ -627,7 +684,7 @@ footer *::selection {
   overflow: visible;
   border-radius: 10px;
   padding: 0px;
-  margin: 0px;
+  margin: 0px 0px 4px 0px; /* Reduced bottom margin */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -641,45 +698,104 @@ footer *::selection {
   position: relative;
   margin: 0px;
   display: block;
+  object-fit: fill;
+  width: 100%;
+  max-width: 100%;
 }
 
 .book-card:hover .image-container img {
-  transform: scale(1.1);
+  transform: scale(1.03);
   transform-origin: center center;
 }
 
 /* Responsive design for book cards */
 @media (max-width: 768px) {
   .book-grid {
-    gap: 16px;
-    padding: 16px;
+    gap: 20px;
+    padding: 20px;
+    row-gap: 40px;
   }
   
   .book-card {
-    width: calc(50% - 8px);
-    max-width: 200px;
+    width: calc(50% - 10px);
+    max-width: 220px;
+    min-height: 480px;
+    padding: 20px 16px;
   }
   
   .book-card img {
     width: 100%;
-    height: 240px;
+    max-width: 100%;
+    height: 280px;
+    object-fit: contain;
+  }
+  
+  .book-card h3 {
+    font-size: 16px;
+    margin: 10px 0 6px;
+  }
+  
+  .book-card p {
+    font-size: 13px;
+  }
+  
+  .book-card .price {
+    font-size: 18px;
+  }
+  
+  .book-actions {
+    flex-direction: column;
+    gap: 6px;
   }
   
   .book-actions button {
-    font-size: 12px;
-    min-width: 80px;
-    padding: 6px 12px;
+    font-size: 13px;
+    min-width: 100%;
+    padding: 8px 12px;
   }
 }
 
 @media (max-width: 480px) {
+  .book-grid {
+    gap: 16px;
+    padding: 16px;
+    row-gap: 32px;
+  }
+  
   .book-card {
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
+    min-height: 520px;
     margin: 0 auto;
+    padding: 20px 18px;
   }
   
   .book-card img {
-    height: 300px;
+    height: 340px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  .book-card h3 {
+    font-size: 17px;
+  }
+  
+  .book-card p {
+    font-size: 14px;
+  }
+  
+  .book-card .price {
+    font-size: 19px;
+  }
+  
+  .book-actions {
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .book-actions button {
+    font-size: 13px;
+    min-width: 48%;
+    padding: 10px 12px;
   }
 }
