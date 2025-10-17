@@ -45,6 +45,19 @@ body
     color: var(--primary-color);
 }
 
+/* Fallback for cart icon if Font Awesome fails to load */
+.page-cart::before {
+    content: "🛒";
+    font-size: 18px;
+    display: none;
+}
+
+/* Show fallback when Font Awesome icon is not available */
+.page-cart:not(:has(i))::before,
+.page-cart i:empty + .page-cart::before {
+    display: inline-block;
+}
+
 .page-cart-badge {
     position: absolute;
     top: -6px;
