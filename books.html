@@ -6,6 +6,7 @@
     <title>Books</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/books.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/script.js"></script>
 </head>
 <body>
@@ -16,10 +17,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="books.html">Browse Books</a></li>
-                    <li><a href="cart.html" style="position: relative;">
-                        <i class="fas fa-shopping-cart"></i> Cart
-                        <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
-                    </a></li>
+                    <li><a href="cart.html">Cart</a></li>
                     <li><a href="orders.html">My Orders</a></li>
                     <li><a href="about.html">About Us</a></li>
                 </ul>
@@ -28,8 +26,6 @@
     </header>
 
     <main>
-        <!-- Quote removed as requested -->
-
         <!-- Search Section -->
         <section class="search-section">
             <div class="search-container">
@@ -42,6 +38,10 @@
                         </svg>
                     </button>
                 </div>
+                <a href="cart.html" class="page-cart" aria-label="View cart">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span id="cart-badge" class="page-cart-badge" style="display: none;">0</span>
+                </a>
             </div>
         </section>
 
@@ -313,6 +313,9 @@
         }
 
         function addToCart(title) {
+            // Show alert when user presses add to cart
+            alert(`Adding "${title}" to your cart!`);
+            
             // Find the book in the database
             fetch('js/database.json')
                 .then(response => response.json())

@@ -148,21 +148,7 @@ main {
     color: var(--accent-color);
 }
 
-/* Cart Badge */
-.cart-badge {
-    position: absolute;
-    top: -8px;
-    right: -10px;
-    background-color: var(--warmorange);
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 3px 6px;
-    border-radius: 50%;
-    min-width: 18px;
-    text-align: center;
-    line-height: 1;
-}
+/* Cart badge removed — badge styling intentionally deleted when removing inline badge markup */
 
 .hero {
   display: flex;

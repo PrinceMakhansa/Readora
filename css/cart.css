@@ -335,7 +335,7 @@
 }
 
 .clear-cart-btn {
-    background: #ff4757;
+    background: #fa4e4e;
     color: white;
     border: none;
     padding: 1rem;
@@ -581,7 +581,7 @@
 }
 
 .toast.success {
-    background: #2ed573;
+    background: #56a075;
 }
 
 .toast.error {
@@ -589,7 +589,7 @@
 }
 
 .toast.info {
-    background: #3742fa;
+    background: #fa4e4e;
 }
 
 /* Active Navigation Link */

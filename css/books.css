@@ -18,6 +18,46 @@ body
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
+    position: relative; /* allow absolutely positioned page-cart inside */
+}
+
+/* Page-level cart icon positioned next to search box */
+.page-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    color: var(--primary-color);
+    text-decoration: none;
+    z-index: 5;
+}
+
+.page-cart i {
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.page-cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--accent-color);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 999px;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1;
 }
 
 .search-box {
@@ -29,6 +69,7 @@ body
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     overflow: hidden;
     transition: all 0.3s ease;
+    width: 540px;
 }
 
 .search-box:focus-within {
@@ -41,6 +82,7 @@ body
     border: none;
     outline: none;
     padding: 16px 20px;
+    padding-right: 96px; /* room for cart icon */
     font-size: 16px;
     font-family: 'Merriweather', serif;
     background-color: transparent;

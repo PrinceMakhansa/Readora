@@ -12,7 +12,6 @@ function getCart() {
 
 function saveCart(cart) {
   localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartBadge();
 }
 
 function updateCartBadge() {
@@ -72,8 +71,8 @@ function buyNow(book) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Update cart badge on page load
-  updateCartBadge();
+  // Attempt to update badge only if present (no-op otherwise)
+  try { updateCartBadge(); } catch (e) { /* ignore if badge logic removed */ }
 
   const navbar = document.querySelector(".navbar");
  
