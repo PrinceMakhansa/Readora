@@ -4,6 +4,80 @@
       }, 1950); 
     });
 
+// Hamburger menu functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  const navOverlay = document.getElementById('nav-overlay');
+  const body = document.body;
+  
+  function toggleMenu() {
+    const isActive = hamburger.classList.contains('active');
+    
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    
+    if (navOverlay) {
+      navOverlay.classList.toggle('active');
+    }
+    
+    // Toggle body scroll
+    if (!isActive) {
+      body.classList.add('menu-open');
+    } else {
+      body.classList.remove('menu-open');
+    }
+  }
+  
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    if (navOverlay) {
+      navOverlay.classList.remove('active');
+    }
+    body.classList.remove('menu-open');
+  }
+  
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', toggleMenu);
+    
+    // Close menu when clicking on a link
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Close menu when clicking on overlay
+    if (navOverlay) {
+      navOverlay.addEventListener('click', closeMenu);
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = navMenu.contains(event.target);
+      const isClickOnHamburger = hamburger.contains(event.target);
+      
+      if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+  }
+});
+
 // Cart utility functions for all pages
 function getCart() {
   const cart = localStorage.getItem('cart');
@@ -114,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           card.innerHTML = `
             <div class="image-container">
-              <img src="${book.cover}" alt="${book.title}" loading="lazy">
+              <img src="${book.cover}" alt="${book.title}" loading="lazy" onerror="this.onerror=null;this.src='images/fevicon/readora-512.png'">
             </div>
             <div class="book-text-content">
               <h3>${book.title}</h3>

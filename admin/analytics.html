@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin-analytics.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+</head>
+<body>
+    <script>
+        try { if (!sessionStorage.getItem('adminLoggedIn')) { window.location.href = 'login.html'; } } catch(e){}
+        window.addEventListener('load', function(){ setTimeout(function(){ var el = document.getElementById('loader'); if(el) el.style.display = 'none'; }, 1200); });
+    </script>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="admin-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Readora Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="books.html"><i class="fas fa-book"></i> Manage Books</a>
+                    </li>
+                    <li>
+                        <a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a>
+                    </li>
+                    <li>
+                        <a href="customers.html"><i class="fas fa-users"></i> Customers</a>
+                    </li>
+                    <li class="active">
+                        <a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+                    </li>
+                    <li class="logout">
+                        <a href="#" onclick="doLogout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content" id="mainContent">
+            <header class="admin-header">
+                <h1>Analytics Dashboard</h1>
+                <div class="header-controls">
+                    <button class="refresh-btn" onclick="refreshAnalytics()">
+                        <i class="fas fa-sync-alt"></i> Refresh Data
+                    </button>
+                </div>
+            </header>
+
+            <div class="analytics-content">
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon books">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3 id="total-books">0</h3>
+                            <p>Total Books</p>
+                            <span class="change-indicator positive" id="books-status">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon categories">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3 id="total-categories">0</h3>
+                            <p>Categories</p>
+                            <span class="change-indicator neutral" id="categories-status">Various</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon value">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3 id="total-value">₹0</h3>
+                            <p>Total Inventory Value</p>
+                            <span class="change-indicator positive" id="value-status">Good</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon price">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3 id="avg-price">₹0</h3>
+                            <p>Average Price</p>
+                            <span class="change-indicator neutral" id="price-status">Stable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Cards -->
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-pie"></i> Category Distribution</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="category-chart" id="category-distribution">
+                                <div class="loading">Loading category data...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-bar"></i> Price Range Analysis</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="price-ranges" id="price-analysis">
+                                <div class="loading">Loading price data...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-star"></i> Top Authors</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="authors-list" id="top-authors">
+                                <div class="loading">Loading author data...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-info-circle"></i> Inventory Summary</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="inventory-summary" id="inventory-summary">
+                                <div class="summary-item">
+                                    <span class="label">Most Expensive:</span>
+                                    <span class="value" id="most-expensive">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Least Expensive:</span>
+                                    <span class="value" id="least-expensive">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Popular Category:</span>
+                                    <span class="value" id="popular-category">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Last Updated:</span>
+                                    <span class="value" id="last-updated">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin-common.js"></script>
+    <script>
+        // Minimal Analytics JavaScript
+        let analyticsData = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            loadAnalyticsData();
+        });
+
+        function initializeMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('mobile-open');
+                    mainContent.classList.toggle('shifted');
+                    
+                    const icon = this.querySelector('i');
+                    icon.className = sidebar.classList.contains('mobile-open') ? 'fas fa-times' : 'fas fa-bars';
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768 && 
+                        !sidebar.contains(e.target) && 
+                        !mobileMenuToggle.contains(e.target) &&
+                        sidebar.classList.contains('mobile-open')) {
+                        sidebar.classList.remove('mobile-open');
+                        mainContent.classList.remove('shifted');
+                        mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
+                    }
+                });
+            }
+        }
+
+        async function loadAnalyticsData() {
+            try {
+                const response = await fetch('../js/database.json');
+                analyticsData = await response.json();
+                updateAnalytics();
+            } catch (error) {
+                console.error('Error loading analytics data:', error);
+                showError('Failed to load analytics data');
+            }
+        }
+
+        function updateAnalytics() {
+            updateMetrics();
+            updateCategoryDistribution();
+            updatePriceAnalysis();
+            updateTopAuthors();
+            updateInventorySummary();
+        }
+
+        function updateMetrics() {
+            const totalBooks = analyticsData.length;
+            const categories = [...new Set(analyticsData.map(book => book.category))];
+            const totalValue = analyticsData.reduce((sum, book) => sum + book.price, 0);
+            const avgPrice = Math.round(totalValue / totalBooks);
+
+            document.getElementById('total-books').textContent = totalBooks;
+            document.getElementById('total-categories').textContent = categories.length;
+            document.getElementById('total-value').textContent = `₹${totalValue.toLocaleString()}`;
+            document.getElementById('avg-price').textContent = `₹${avgPrice}`;
+        }
+
+        function updateCategoryDistribution() {
+            const categories = {};
+            analyticsData.forEach(book => {
+                categories[book.category] = (categories[book.category] || 0) + 1;
+            });
+
+            const container = document.getElementById('category-distribution');
+            container.innerHTML = '';
+
+            Object.entries(categories)
+                .sort(([,a], [,b]) => b - a)
+                .forEach(([category, count]) => {
+                    const percentage = ((count / analyticsData.length) * 100).toFixed(1);
+                    const item = document.createElement('div');
+                    item.className = 'category-item';
+                    item.innerHTML = `
+                        <div class="category-info">
+                            <span class="category-name">${category}</span>
+                            <span class="category-stats">${count} books (${percentage}%)</span>
+                        </div>
+                        <div class="category-bar">
+                            <div class="category-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
+        }
+
+        function updatePriceAnalysis() {
+            const ranges = {
+                'Under ₹300': 0,
+                '₹300 - ₹400': 0,
+                '₹400 - ₹500': 0,
+                '₹500 - ₹600': 0,
+                'Above ₹600': 0
+            };
+
+            analyticsData.forEach(book => {
+                if (book.price < 300) ranges['Under ₹300']++;
+                else if (book.price < 400) ranges['₹300 - ₹400']++;
+                else if (book.price < 500) ranges['₹400 - ₹500']++;
+                else if (book.price < 600) ranges['₹500 - ₹600']++;
+                else ranges['Above ₹600']++;
+            });
+
+            const container = document.getElementById('price-analysis');
+            container.innerHTML = '';
+
+            Object.entries(ranges).forEach(([range, count]) => {
+                const percentage = ((count / analyticsData.length) * 100).toFixed(1);
+                const item = document.createElement('div');
+                item.className = 'price-range-item';
+                item.innerHTML = `
+                    <span class="range-label">${range}</span>
+                    <span class="range-count">${count} books</span>
+                    <span class="range-percentage">${percentage}%</span>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function updateTopAuthors() {
+            const authors = {};
+            analyticsData.forEach(book => {
+                authors[book.author] = (authors[book.author] || 0) + 1;
+            });
+
+            const container = document.getElementById('top-authors');
+            container.innerHTML = '';
+
+            Object.entries(authors)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 10)
+                .forEach(([author, count]) => {
+                    const item = document.createElement('div');
+                    item.className = 'author-item';
+                    item.innerHTML = `
+                        <span class="author-name">${author}</span>
+                        <span class="author-count">${count} book${count > 1 ? 's' : ''}</span>
+                    `;
+                    container.appendChild(item);
+                });
+        }
+
+        function updateInventorySummary() {
+            const prices = analyticsData.map(book => book.price);
+            const maxPrice = Math.max(...prices);
+            const minPrice = Math.min(...prices);
+            
+            const mostExpensive = analyticsData.find(book => book.price === maxPrice);
+            const leastExpensive = analyticsData.find(book => book.price === minPrice);
+            
+            const categories = {};
+            analyticsData.forEach(book => {
+                categories[book.category] = (categories[book.category] || 0) + 1;
+            });
+            const popularCategory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
+
+            document.getElementById('most-expensive').textContent = `${mostExpensive.title} (₹${mostExpensive.price})`;
+            document.getElementById('least-expensive').textContent = `${leastExpensive.title} (₹${leastExpensive.price})`;
+            document.getElementById('popular-category').textContent = `${popularCategory} (${categories[popularCategory]} books)`;
+            document.getElementById('last-updated').textContent = new Date().toLocaleString();
+        }
+
+        function refreshAnalytics() {
+            const refreshBtn = document.querySelector('.refresh-btn');
+            refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+            
+            setTimeout(() => {
+                loadAnalyticsData();
+                refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Data';
+            }, 1000);
+        }
+
+        function showError(message) {
+            const containers = document.querySelectorAll('.loading');
+            containers.forEach(container => {
+                container.textContent = message;
+                container.className = 'error';
+            });
+        }
+    </script>
+</body>
+</html>

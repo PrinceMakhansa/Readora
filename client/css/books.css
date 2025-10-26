@@ -224,13 +224,53 @@ body
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .search-box {
+        width: 480px;
+    }
+    
     .filter-container h2 {
-        font-size: 24px; /* was 1.5rem */
+        font-size: 28px;
+    }
+    
+    .category-title {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        max-width: 100%;
+        padding: 0 16px;
+    }
+    
+    .search-box {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px;
+    }
+    
+    .page-cart {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-left: 12px;
+        flex-shrink: 0;
+    }
+    
+    .search-section {
+        padding: 16px 8px;
+    }
+    
+    .filter-container h2 {
+        font-size: 24px;
     }
     
     .category-filters {
-        gap: 8px; /* was 0.5rem */
+        gap: 8px;
+        padding: 8px 16px;
+        justify-content: flex-start;
     }
     
     .filter-btn {
@@ -240,29 +280,17 @@ body
     }
     
     .category-title {
-        font-size: 32px; /* was 2rem */
+        font-size: 32px;
     }
     
     .filter-section {
-        padding: 16px 16px; /* was 1rem 1rem */
-        margin: 8px 0; /* was 0.5rem 0 */
-    }
-
-    .search-container {
-        max-width: 100%;
-        padding: 0 16px; /* was 0 1rem */
-    }
-
-    .search-section {
-        padding: 16px 8px; /* was 1rem 0.5rem */
-    }
-
-    .search-box {
-        border-radius: 20px;
+        padding: 16px 16px;
+        margin: 8px 0;
     }
 
     #searchInput {
         padding: 14px 16px;
+        padding-right: 16px;
         font-size: 14px;
     }
 
@@ -272,8 +300,28 @@ body
 }
 
 @media (max-width: 480px) {
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .page-cart {
+        align-self: center;
+        margin: 0;
+    }
+    
     .filter-container h2 {
-        font-size: 20.8px; /* was 1.3rem */
+        font-size: 20.8px;
+    }
+    
+    .category-filters {
+        gap: 6px;
+        padding: 8px 12px;
     }
     
     .filter-btn {
@@ -283,11 +331,11 @@ body
     }
     
     .category-title {
-        font-size: 24px; /* was 1.5rem */
+        font-size: 24px;
     }
     
     .search-section {
-        padding: 12.8px 8px; /* was 0.8rem 0.5rem */
+        padding: 12.8px 8px;
     }
 
     #searchInput {
@@ -303,4 +351,14 @@ body
         width: 18px;
         height: 18px;
     }
+}
+
+/* Book Card Image Styling for Consistency */
+.book-card img {
+    object-fit: cover !important;
+}
+
+.book-card .image-container {
+    overflow: hidden;
+    border-radius: 8px;
 }

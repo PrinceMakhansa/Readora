@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readora</title>
-    <link rel="stylesheet" href="css/styles.css">   
+    <link rel="stylesheet" href="client/css/styles.css">   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- <link rel="icon" type="image/png" href="images/icons/owl.png"> -->
      <link rel="icon" type="image/png" href="images/fevicon/readora-512.png">
+    <script src="js/utils.js"></script>
     <script src="js/script.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
@@ -28,16 +29,22 @@
     <header>
         <div class="navbar">
             <a href="index.html" class="logo">Readora</a>   
-            <nav aria-label="Main Navigation">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav aria-label="Main Navigation" id="nav-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="books.html">Browse Books</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">My Orders</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="client/books.html">Browse Books</a></li>
+                    <li><a href="client/cart.html">Cart</a></li>
+                    <li><a href="client/orders.html">My Orders</a></li>
+                    <li><a href="client/about.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
+        <div class="nav-overlay" id="nav-overlay"></div>
     </header>
 
     <main>
@@ -46,7 +53,7 @@
                     <h1 class="tagline">Read More, Explore More</h1>
                     <div class="subtext">Discover your next adventure in books—handpicked stories, seamless shopping, and endless inspiration at <span class="highlight">&nbsp;Readora.</span></div>
                     <div class="button-container">
-                        <a href="books.html" class="readora-btn">Start Exploring</a>
+                        <a href="client/books.html" class="readora-btn">Start Exploring</a>
                         <a href="#categories" class="readora-btn">Explore Categories</a>
                     </div>
             </div>
@@ -81,7 +88,7 @@
                     <img src="https://covers.openlibrary.org/b/isbn/9781501110368-L.jpg" alt="Pride and Prejudice" loading="lazy">
                 </div>
                 <div class="book book6">
-                    <img src="https://covers.openlibrary.org/b/isbn/OL25634141M-L.jpg" alt="Shrimad Bhagwat Geeta" loading="lazy">
+                    <img src="https://covers.openlibrary.org/b/isbn/9781566196703-L.jpg" alt="Shrimad Bhagwat Geeta" loading="lazy">
                 </div>
                 <div class="book book7">
                     <img src="https://covers.openlibrary.org/b/isbn/9780062073488-L.jpg" alt="Gone Girl" loading="lazy">
@@ -106,35 +113,35 @@
         <section class="categories" id="categories">
             <h1>Categories</h1>
             <div class="category-list">
-                <a href="books.html?category=Devotional" class="category-item">
+                <a href="client/books.html?category=Devotional" class="category-item">
                     <img src="images/icons/devotional.png" alt="Devotional">
                     <span>Devotional</span>
                 </a>
-                <a href="books.html?category=Fiction" class="category-item">
+                <a href="client/books.html?category=Fiction" class="category-item">
                     <img src="images/icons/fiction2.png" alt="Fiction">
                     <span>Fiction</span>
                 </a>
-                <a href="books.html?category=Mystery" class="category-item">
+                <a href="client/books.html?category=Mystery" class="category-item">
                     <img src="images/icons/mystery.png" alt="Mystery">
                     <span>Mystery</span>
                 </a>
-                <a href="books.html?category=Sci-Fi" class="category-item">
+                <a href="client/books.html?category=Sci-Fi" class="category-item">
                     <img src="images/icons/sci-fi.png" alt="Sci-Fi">
                     <span>Sci-Fi</span>
                 </a>
-                <a href="books.html?category=Historical" class="category-item">
+                <a href="client/books.html?category=Historical" class="category-item">
                     <img src="images/icons/historic.png" alt="Historical">
                     <span>Historical</span>
                 </a>
-                <a href="books.html?category=Romance" class="category-item">
+                <a href="client/books.html?category=Romance" class="category-item">
                     <img src="images/icons/romance.png" alt="Romance">
                     <span>Romance</span>
                 </a>
-                <a href="books.html?category=Educational" class="category-item">
+                <a href="client/books.html?category=Educational" class="category-item">
                     <img src="images/icons/educational.png" alt="Educational">
                     <span>Educational</span>
                 </a>
-                <a href="books.html?category=Comics" class="category-item">
+                <a href="client/books.html?category=Comics" class="category-item">
                     <img src="images/icons/comics.png" alt="Comics">
                     <span>Comics</span>
                 </a>
@@ -148,14 +155,14 @@
             <div class="footer-column">
             <h4>Quick Links</h4>
             <a href="index.html">Home</a>
-            <a href="books.html">Browse Books</a>
-            <a href="cart.html">Cart</a>
-            <a href="orders.html">My Orders</a>
-            <a href="about.html">About Us</a>
+            <a href="client/books.html">Browse Books</a>
+            <a href="client/cart.html">Cart</a>
+            <a href="client/orders.html">My Orders</a>
+            <a href="client/about.html">About Us</a>
             </div>
             <div class="footer-column">
             <h4>Social Media</h4>
-            <a href="https://www.instagram.com/prince.makhansa" target="_blank">Instagram</a>
+            <a href="mailto:princemakhansa@gmail.com?subject=Readora%20Inquiry">Email</a>
             <a href="https://github.com/PrinceMakhansa" target="_blank">GitHub</a>
             </div>
         </div>

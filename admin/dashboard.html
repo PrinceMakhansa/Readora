@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Readora</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+</head>
+<body>
+    <script>
+        // Require authentication for admin pages
+        try {
+            if (!sessionStorage.getItem('adminLoggedIn')) {
+                window.location.href = 'login.html';
+            }
+        } catch (e) { /* ignore */ }
+    </script>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="admin-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Readora Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="books.html"><i class="fas fa-book"></i> Manage Books</a>
+                    </li>
+                    <li>
+                        <a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a>
+                    </li>
+                    <li>
+                        <a href="customers.html"><i class="fas fa-users"></i> Customers</a>
+                    </li>
+                    <li>
+                        <a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+                    </li>
+                    <li class="logout">
+                        <a href="#" onclick="doLogout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content" id="mainContent">
+            <header class="admin-header">
+                <h1>Dashboard Overview</h1>
+                <div class="admin-user">
+                    <span>Welcome, Admin</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon books">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-books">25</h3>
+                            <p>Total Books</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon orders">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-orders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-revenue">₹0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon customers">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-customers">0</h3>
+                            <p>Active Customers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-bar"></i> Quick Overview</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="overview-grid">
+                                <div class="overview-item">
+                                    <i class="fas fa-book-open"></i>
+                                    <span class="overview-label">Categories</span>
+                                    <span class="overview-value" id="category-count">Loading...</span>
+                                </div>
+                                <div class="overview-item">
+                                    <i class="fas fa-star"></i>
+                                    <span class="overview-label">Top Category</span>
+                                    <span class="overview-value" id="top-category">Loading...</span>
+                                </div>
+                                <div class="overview-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span class="overview-label">Avg Price</span>
+                                    <span class="overview-value" id="avg-price">Loading...</span>
+                                </div>
+                                <div class="overview-item">
+                                    <i class="fas fa-percentage"></i>
+                                    <span class="overview-label">Stock Status</span>
+                                    <span class="overview-value text-success">Good</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-tasks"></i> Quick Actions</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="quick-actions">
+                                <a href="books.html" class="action-btn primary">
+                                    <i class="fas fa-plus"></i> Add New Book
+                                </a>
+                                <a href="orders.html" class="action-btn secondary">
+                                    <i class="fas fa-eye"></i> View Orders
+                                </a>
+                                <a href="customers.html" class="action-btn success">
+                                    <i class="fas fa-users"></i> Manage Customers
+                                </a>
+                                <a href="analytics.html" class="action-btn info">
+                                    <i class="fas fa-chart-bar"></i> View Analytics
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-list"></i> Book Categories</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="category-list" id="category-breakdown">
+                                <div class="category-item">
+                                    <span class="category-name">Loading categories...</span>
+                                    <span class="category-count">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin-common.js"></script>
+    <script>
+        // Minimal Dashboard JavaScript
+        let booksData = [];
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            loadDashboardData();
+        });
+
+        function initializeMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('mobile-open');
+                    mainContent.classList.toggle('shifted');
+                    
+                    const icon = this.querySelector('i');
+                    icon.className = sidebar.classList.contains('mobile-open') ? 'fas fa-times' : 'fas fa-bars';
+                });
+
+                // Close sidebar when clicking outside on mobile
+                document.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768 && 
+                        !sidebar.contains(e.target) && 
+                        !mobileMenuToggle.contains(e.target) &&
+                        sidebar.classList.contains('mobile-open')) {
+                        sidebar.classList.remove('mobile-open');
+                        mainContent.classList.remove('shifted');
+                        mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
+                    }
+                });
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('../js/database.json');
+                booksData = await response.json();
+                updateDashboardStats();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        function updateDashboardStats() {
+            // Update total books
+            document.getElementById('total-books').textContent = booksData.length;
+
+            // Calculate category breakdown
+            const categories = {};
+            let totalPrice = 0;
+
+            booksData.forEach(book => {
+                categories[book.category] = (categories[book.category] || 0) + 1;
+                totalPrice += book.price;
+            });
+
+            // Update overview data
+            const categoryCount = Object.keys(categories).length;
+            const topCategory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b, '');
+            const avgPrice = Math.round(totalPrice / booksData.length);
+
+            document.getElementById('category-count').textContent = categoryCount;
+            document.getElementById('top-category').textContent = topCategory;
+            document.getElementById('avg-price').textContent = `₹${avgPrice}`;
+            document.getElementById('total-revenue').textContent = `₹${totalPrice.toLocaleString()}`;
+
+            // Update category breakdown
+            updateCategoryBreakdown(categories);
+        }
+
+        function updateCategoryBreakdown(categories) {
+            const container = document.getElementById('category-breakdown');
+            container.innerHTML = '';
+
+            Object.entries(categories)
+                .sort(([,a], [,b]) => b - a)
+                .forEach(([category, count]) => {
+                    const item = document.createElement('div');
+                    item.className = 'category-item';
+                    item.innerHTML = `
+                        <span class="category-name">${category}</span>
+                        <span class="category-count">${count} book${count !== 1 ? 's' : ''}</span>
+                    `;
+                    container.appendChild(item);
+                });
+        }
+
+        // Refresh dashboard data every 5 minutes
+        setInterval(() => {
+            loadDashboardData();
+        }, 300000);
+    </script>
+</body>
+</html>

@@ -7,16 +7,35 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="images/fevicon/readora-512.png">
-    <script src="js/script.js"></script>
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+    <script src="../js/utils.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Lottie loader -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
+    <!-- Loader -->
+    <div id="loader">
+        <lottie-player
+            src="../src/loader.json"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px;"
+            loop
+            autoplay>
+        </lottie-player>
+    </div>
      <header>
         <div class="navbar">
-            <a href="index.html" class="logo">Readora</a>   
-            <nav aria-label="Main Navigation">
+            <a href="../index.html" class="logo">Readora</a>   
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav aria-label="Main Navigation" id="nav-menu">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../index.html">Home</a></li>
                     <li><a href="books.html">Browse Books</a></li>
                     <li><a href="cart.html">Cart</a></li>
                     <li><a href="orders.html">My Orders</a></li>
@@ -24,8 +43,8 @@
                 </ul>
             </nav>
         </div>
+        <div class="nav-overlay" id="nav-overlay"></div>
     </header>
-
 
     <main>
         <div class="cart-container">
@@ -183,6 +202,27 @@
         </div>
     </div>
 
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <a href="../index.html">Home</a>
+                <a href="books.html">Browse Books</a>
+                <a href="cart.html">Cart</a>
+                <a href="orders.html">My Orders</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-column">
+                <h4>Social Media</h4>
+                <a href="mailto:princemakhansa@gmail.com?subject=Readora%20Inquiry">Email</a>
+                <a href="https://github.com/PrinceMakhansa" target="_blank">GitHub</a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            © 2025 Readora. All rights reserved. | Designed & Developed by <span class="developed">Prince Makhansa</span>
+        </div>
+    </footer>
+
     <script>
         // Cart-specific JavaScript
         document.addEventListener('DOMContentLoaded', function() {
@@ -323,22 +363,25 @@
             document.body.style.overflow = 'auto';
         }
 
+        // getNextOrderId() is provided by ../js/utils.js (included in head)
         function placeOrder(event) {
             event.preventDefault();
             
             const formData = new FormData(event.target);
+            const customerData = {
+                name: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                address: formData.get('address'),
+                city: formData.get('city'),
+                pincode: formData.get('pincode')
+            };
+            
             const orderData = {
-                id: Date.now(),
+                id: getNextOrderId(),
                 date: new Date().toISOString(),
                 items: getCart(),
-                customer: {
-                    name: formData.get('fullName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    address: formData.get('address'),
-                    city: formData.get('city'),
-                    pincode: formData.get('pincode')
-                },
+                customer: customerData,
                 payment: formData.get('payment'),
                 status: 'confirmed',
                 total: document.getElementById('total-amount').textContent
@@ -349,6 +392,9 @@
             orders = orders ? JSON.parse(orders) : [];
             orders.unshift(orderData);
             localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Add customer to admin customer list if they don't exist
+            addCustomerToAdminList(customerData);
 
             // Clear cart
             localStorage.removeItem('cart');
@@ -361,6 +407,41 @@
             setTimeout(() => {
                 window.location.href = 'orders.html';
             }, 2000);
+        }
+
+        function addCustomerToAdminList(customerData) {
+            // Get existing customers from admin panel storage
+            let customers = localStorage.getItem('readora_customers');
+            customers = customers ? JSON.parse(customers) : [];
+            
+            // Check if customer already exists (by email)
+            const existingCustomer = customers.find(c => c.email === customerData.email);
+            
+            if (!existingCustomer) {
+                // Create new customer record
+                const newCustomer = {
+                    id: Date.now(), // Simple ID generation
+                    name: customerData.name,
+                    email: customerData.email,
+                    phone: customerData.phone,
+                    address: `${customerData.address}, ${customerData.city} ${customerData.pincode}`,
+                    status: 'active',
+                    joinDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+                    totalOrders: 1,
+                    totalSpent: parseInt(document.getElementById('total-amount').textContent.replace('₹', '')),
+                    notes: 'Customer added automatically from order'
+                };
+                
+                customers.push(newCustomer);
+                localStorage.setItem('readora_customers', JSON.stringify(customers));
+                console.log('New customer added to admin list:', newCustomer);
+            } else {
+                // Update existing customer's order count and spending
+                existingCustomer.totalOrders = (existingCustomer.totalOrders || 0) + 1;
+                existingCustomer.totalSpent = (existingCustomer.totalSpent || 0) + parseInt(document.getElementById('total-amount').textContent.replace('₹', ''));
+                localStorage.setItem('readora_customers', JSON.stringify(customers));
+                console.log('Updated existing customer in admin list:', existingCustomer);
+            }
         }
     </script>
 </body>

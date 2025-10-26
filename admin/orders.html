@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin-orders.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+</head>
+<body>
+    <script>
+        try { if (!sessionStorage.getItem('adminLoggedIn')) { window.location.href = 'login.html'; } } catch(e){}
+    </script>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Readora Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="books.html"><i class="fas fa-book"></i> Manage Books</a>
+                    </li>
+                    <li class="active">
+                        <a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a>
+                    </li>
+                    <li>
+                        <a href="customers.html"><i class="fas fa-users"></i> Customers</a>
+                    </li>
+                    <li>
+                        <a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+                    </li>
+                    <li class="logout">
+                        <a href="#" onclick="doLogout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="admin-header">
+                <h1>Order Management</h1>
+                <div class="header-actions">
+                    <button class="export-btn" onclick="exportOrders()">
+                        <i class="fas fa-download"></i> Export Orders
+                    </button>
+                    <button class="refresh-btn" onclick="refreshOrders()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+            </header>
+
+            <div class="orders-content">
+                <!-- Order Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="pending-orders">0</h3>
+                            <p>Pending Orders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon confirmed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="confirmed-orders">0</h3>
+                            <p>Confirmed Orders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon shipped">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="shipped-orders">0</h3>
+                            <p>Shipped Orders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon delivered">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="delivered-orders">0</h3>
+                            <p>Delivered Orders</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Filters and Controls -->
+                <div class="orders-controls">
+                    <div class="filters-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="order-search" placeholder="Search by order ID, customer name, or email...">
+                        </div>
+                        <select id="status-filter">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <select id="date-filter">
+                            <option value="">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                    <div class="bulk-actions">
+                        <select id="bulk-action" disabled>
+                            <option value="">Bulk Actions</option>
+                            <option value="confirm">Mark as Confirmed</option>
+                            <option value="ship">Mark as Shipped</option>
+                            <option value="deliver">Mark as Delivered</option>
+                            <option value="cancel">Cancel Orders</option>
+                        </select>
+                        <button class="apply-bulk-btn" onclick="applyBulkAction()" disabled>Apply</button>
+                    </div>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="orders-table-container">
+                    <table class="orders-table" id="orders-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="select-all" onchange="toggleSelectAll()">
+                                </th>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body">
+                            <!-- Orders will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="empty-state" style="display: none;">
+                    <i class="fas fa-inbox"></i>
+                    <h3>No Orders Found</h3>
+                    <p>No orders match your current filters.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="order-details-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Order Details</h3>
+                <button class="close-btn" onclick="closeOrderDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="order-details-content">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Status Modal -->
+    <div class="modal" id="status-modal">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h3>Update Order Status</h3>
+                <button class="close-btn" onclick="closeStatusModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="status-form">
+                    <div class="form-group">
+                        <label for="new-status">New Status</label>
+                        <select id="new-status" required>
+                            <option value="">Select Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status-note">Note (Optional)</label>
+                        <textarea id="status-note" rows="3" placeholder="Add a note about this status update..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" onclick="closeStatusModal()" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-common.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/admin-orders.js"></script>
+</body>
+</html>

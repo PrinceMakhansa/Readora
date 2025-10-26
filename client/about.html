@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Readora</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+    <script src="../js/script.js" defer></script>
+    <!-- Lottie loader -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader">
+        <lottie-player
+            src="../src/loader.json"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px;"
+            loop
+            autoplay>
+        </lottie-player>
+    </div>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="logo">Readora</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav aria-label="Main Navigation" id="nav-menu">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="books.html">Browse Books</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="orders.html">My Orders</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                        <li id="admin-nav-item" style="display:none">
+                            <a id="admin-nav-link" href="../admin/login.html" title="Admin">
+                                <i class="fas fa-user-shield"></i> Admin
+                            </a>
+                        </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <script>
+        (function(){
+            var li = document.getElementById('admin-nav-item');
+            var a = document.getElementById('admin-nav-link');
+            if (!li || !a) return;
+            try {
+                // Show the admin link; point to dashboard when logged in, otherwise to login
+                li.style.display = 'inline-block';
+                if (sessionStorage.getItem('adminLoggedIn')) {
+                    a.href = '../admin/dashboard.html';
+                    a.title = 'Admin Dashboard';
+                } else {
+                    a.href = '../admin/login.html';
+                    a.title = 'Admin Login';
+                }
+            } catch(e) {
+                li.style.display = 'none';
+            }
+        })();
+    </script>
+
+    <main>
+        <section class="hero-about">
+            <div class="hero-content">
+                <h1>About <span class="highlight">Readora</span></h1>
+                <p class="hero-subtitle">Turning pages into journeys, and readers into explorers.</p>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+
+            <section class="mission">
+                <div class="section-icon">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <h2>Our Mission</h2>
+                <p>
+                    At Readora, we believe that every book opens a door to a new world.
+                    Our mission is simple: to help readers discover, explore, and enjoy books in a way that feels inspiring, personal, and connected.
+                </p>
+            </section>
+
+            <section class="values">
+                <div class="section-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h2>Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <span class="material-symbols-outlined">book_2</span>
+                        <h3>Love for Reading</h3>
+                        <p>Books are at the heart of everything we do.</p>
+                    </div>
+                    <div class="value-card">
+                        <span class="material-symbols-outlined">diversity_3</span>
+                        <h3>Community & Connection</h3>
+                        <p>Stories bring people closer, and so does Readora.</p>
+                    </div>
+                    <div class="value-card">
+                        <span class="material-symbols-outlined">auto_stories</span>
+                        <h3>Lifelong Learning</h3>
+                        <p>Every page is a step toward growth.</p>
+                    </div>
+                    <div class="value-card">
+                        <span class="material-symbols-outlined">lightbulb</span>
+                        <h3>Creativity & Curiosity</h3>
+                        <p>We celebrate imagination and exploration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="creator">
+                <div class="creator-content">
+                    <div class="creator-info">
+                        <div class="section-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h2>About the Creator</h2>
+                        <p>
+                            Hi, I'm <strong class="creator-name">Prince Makhansa</strong>, the creator of Readora. 
+                            This project is about exploring how technology can bring communities together — 
+                            in this case, through the world of books and stories.
+                        </p>
+                        <div class="creator-stats">
+                            <!-- Creator stats removed as requested -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact">
+                <div class="section-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h2>Join Our Journey</h2>
+                <p>
+                    Become part of the Readora community and explore stories that inspire, connect, and stay with you.
+                    Have ideas, feedback, or questions? Reach out directly and help us make Readora even better—together.
+                </p>
+                <div class="contact-actions">
+                    <a id="email-link" href="mailto:princemakhansa@gmail.com?subject=Readora%20Inquiry" class="cta primary" title="Email us">
+                        <i class="fas fa-envelope"></i>
+                        Email Us
+                    </a>
+                    <a href="../index.html" class="cta secondary">
+                        <i class="fas fa-home"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+            <div class="footer-container">
+            <div class="footer-column">
+            <h4>Quick Links</h4>
+            <a href="../index.html">Home</a>
+            <a href="books.html">Browse Books</a>
+            <a href="cart.html">Cart</a>
+            <a href="orders.html">My Orders</a>
+            <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-column">
+            <h4>Social Media</h4>
+            <a href="mailto:princemakhansa@gmail.com?subject=Readora%20Inquiry">Email</a>
+            <a href="https://github.com/PrinceMakhansa" target="_blank">GitHub</a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            © 2025 Readora. All rights reserved. | Designed & Developed by <span class="developed">Prince Makhansa</span>
+        </div>
+    </footer>
+            <script>
+        // Email fallback for users without a default mail client
+        ;(function(){
+            var emailLink = document.getElementById('email-link');
+            if (!emailLink) return;
+            var email = 'princemakhansa@gmail.com';
+            var subject = 'Readora Inquiry';
+            var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email) + '&su=' + encodeURIComponent(subject);
+
+            emailLink.addEventListener('click', function(e){
+                // Prevent default so we can offer fallbacks
+                e.preventDefault();
+
+                // Ask user which method they prefer
+                var choice = window.confirm('Open your default mail app? Click OK to try that, or Cancel to compose in Gmail web.');
+                if (choice) {
+                    // Try mailto
+                    window.location.href = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject);
+                    // Also offer copy if nothing happens
+                    setTimeout(function(){
+                        if (!document.hidden) {
+                            // Show a second confirm to copy email if the mail app didn't open
+                            var copy = window.confirm('If your mail app did not open, click OK to copy the email address to clipboard so you can paste it into a web mail client.');
+                            if (copy) {
+                                try {
+                                    navigator.clipboard.writeText(email);
+                                    alert('Email address copied to clipboard: ' + email);
+                                } catch(err) {
+                                    // Fallback prompt
+                                    window.prompt('Copy this email address:', email);
+                                }
+                            }
+                        }
+                    }, 700);
+                } else {
+                    // Open Gmail compose in a new tab
+                    window.open(gmailUrl, '_blank');
+                }
+            });
+        })();
+            </script>
+
+</body>
+</html>

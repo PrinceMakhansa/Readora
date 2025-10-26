@@ -22,6 +22,11 @@ body
     line-height: 1.6;
 }
 
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
 header 
 {
     background-color: #F8EDE3;
@@ -118,7 +123,8 @@ main {
 
 .navbar nav ul li a {
     font-family: 'Merriweather', serif;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     letter-spacing: 0.5px;
     text-decoration: none;
     color: #3E2C23;
@@ -146,6 +152,55 @@ main {
 
 .navbar nav ul li a:hover {
     color: var(--accent-color);
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 11;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #3E2C23;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile navigation overlay */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-overlay.active {
+    display: block;
+    opacity: 1;
 }
 
 /* Cart badge removed — badge styling intentionally deleted when removing inline badge markup */
@@ -578,7 +633,7 @@ footer *::selection {
   width: 100%;
   max-width: 230px; /* Match card width */
   border-radius: 8px;
-  object-fit: fill;
+  object-fit: cover;
   height: 380px; /* Increased from 350px for better visibility */
   transition: 0.3s ease;
 }
@@ -667,7 +722,7 @@ footer *::selection {
 }
 
 .book-card .image-container {
-  overflow: visible;
+  overflow: hidden;
   border-radius: 10px;
   padding: 0px;
   margin: 0px 0px 4px 0px; /* Reduced bottom margin */
@@ -677,6 +732,7 @@ footer *::selection {
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  height: 380px;
 }
 
 .book-card .image-container img {
@@ -684,8 +740,9 @@ footer *::selection {
   position: relative;
   margin: 0px;
   display: block;
-  object-fit: fill;
+  object-fit: cover;
   width: 100%;
+  height: 100%;
   max-width: 100%;
 }
 
@@ -695,7 +752,160 @@ footer *::selection {
 }
 
 /* Responsive design for book cards */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 60px 3%;
+    gap: 40px;
+  }
+  
+  .hero-content {
+    margin-left: 40px;
+  }
+  
+  .animation-container {
+    transform: translateX(-40px);
+  }
+  
+  .category-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
 @media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  .navbar nav {
+    position: fixed;
+    top: 80px;
+    right: -100%;
+    width: 280px;
+    height: calc(100vh - 80px);
+    background-color: #eac5b4;
+    transition: right 0.3s ease;
+    z-index: 10;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+  }
+  
+  .navbar nav.active {
+    right: 0;
+  }
+  
+  .navbar nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 20px 0;
+    height: auto;
+    min-height: 100%;
+  }
+  
+  .navbar nav ul li {
+    width: 100%;
+  }
+  
+  .navbar nav ul li a {
+    display: block;
+    padding: 18px 30px;
+    border-bottom: 1px solid rgba(62, 44, 35, 0.1);
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar nav ul li a:hover {
+    background-color: rgba(62, 44, 35, 0.1);
+    padding-left: 40px;
+  }
+  
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  .hero {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .hero-content {
+    margin-left: 0;
+    max-width: 100%;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .hero .subtext {
+    font-size: 16px;
+  }
+  
+  .animation-container {
+    display: none; /* Hide animation on mobile */
+  }
+  
+  .button-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .featured-books h1,
+  .categories h1,
+  .top-selling h1 {
+    font-size: 24px;
+  }
+  
+  .category-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding-top: 20px;
+  }
+  
+  .category-item {
+    padding: 15px;
+    min-width: 120px;
+  }
+  
+  .category-item img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+  
+  .category-item span {
+    font-size: 14px;
+  }
+  
+  .book-wrapper {
+    height: 420px;
+    margin-top: 20px;
+  }
+  
+  .book {
+    width: 220px;
+    height: 320px;
+    top: 40px;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .footer-column {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-column a {
+    text-align: center;
+  }
+
   .book-grid {
     gap: 20px;
     padding: 20px;
@@ -713,7 +923,7 @@ footer *::selection {
     width: 100%;
     max-width: 100%;
     height: 280px;
-    object-fit: contain;
+    object-fit: cover;
   }
   
   .book-card h3 {
@@ -742,6 +952,93 @@ footer *::selection {
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    padding-left: 0;
+  }
+  
+  .navbar nav {
+    width: 100%;
+    top: 65px;
+    height: calc(100vh - 65px);
+  }
+  
+  .hero {
+    padding: 30px 15px;
+    margin-top: 60px;
+  }
+  
+  .hero h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  
+  .hero .subtext {
+    font-size: 15px;
+  }
+  
+  .hero .subtext .highlight {
+    font-size: 22px;
+  }
+  
+  .readora-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    min-width: 130px;
+  }
+  
+  .button-container {
+    gap: 15px;
+  }
+  
+  .featured-books h1,
+  .categories h1,
+  .top-selling h1 {
+    font-size: 22px;
+  }
+  
+  .category-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding-top: 15px;
+  }
+  
+  .category-item {
+    padding: 12px;
+    min-width: 100px;
+  }
+  
+  .category-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .category-item span {
+    font-size: 13px;
+  }
+  
+  .book-wrapper {
+    height: 350px;
+    margin-top: 15px;
+  }
+  
+  .book {
+    width: 180px;
+    height: 260px;
+    top: 35px;
+  }
+  
+  @keyframes scrollLeft {
+    to {
+      left: -294px; /* Adjusted for smaller book width */
+    }
+  }
+
   .book-grid {
     gap: 16px;
     padding: 16px;
@@ -759,7 +1056,7 @@ footer *::selection {
   .book-card img {
     height: 340px;
     max-width: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
   
   .book-card h3 {
@@ -785,3 +1082,6 @@ footer *::selection {
     padding: 10px 12px;
   }
 }
+
+/* Responsive design for book cards */
+

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Readora</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/orders.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+    <script src="../js/utils.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Lottie loader -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader">
+        <lottie-player
+            src="../src/loader.json"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px;"
+            loop
+            autoplay>
+        </lottie-player>
+    </div>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="logo">Readora</a>   
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav aria-label="Main Navigation" id="nav-menu">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="books.html">Browse Books</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="orders.html">My Orders</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main>
+        <div class="orders-container">
+            <div class="orders-header">
+                <h1><i class="fas fa-clipboard-list"></i> My Orders</h1>
+                <p class="orders-subtitle">Track your order history and manage your purchases</p>
+            </div>
+
+            <!-- Order Stats -->
+            <div class="order-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-orders">0</span>
+                        <span class="stat-label">Total Orders</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-spent">₹0</span>
+                        <span class="stat-label">Total Spent</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-books">0</span>
+                        <span class="stat-label">Books Ordered</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty Orders State -->
+            <div id="empty-orders" class="empty-orders" style="display: none;">
+                <div class="empty-orders-content">
+                    <div class="empty-orders-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h2>No orders yet</h2>
+                    <p>You haven't placed any orders yet. Start exploring our amazing collection of books!</p>
+                    <div class="empty-orders-actions">
+                        <a href="books.html" class="browse-books-btn">
+                            <i class="fas fa-book"></i> Browse Books
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders List -->
+            <div id="orders-content" class="orders-content">
+                <div class="orders-filter">
+                    <h2>Your Orders</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-status="all">All Orders</button>
+                        <button class="filter-btn" data-status="confirmed">Confirmed</button>
+                        <button class="filter-btn" data-status="shipped">Shipped</button>
+                        <button class="filter-btn" data-status="delivered">Delivered</button>
+                    </div>
+                </div>
+                <div id="orders-list" class="orders-list">
+                    <!-- Orders will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Details Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="order-details-content">
+                <!-- Order details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <a href="../index.html">Home</a>
+                <a href="books.html">Browse Books</a>
+                <a href="cart.html">Cart</a>
+                <a href="orders.html">My Orders</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-column">
+                <h4>Social Media</h4>
+                <a href="mailto:princemakhansa@gmail.com?subject=Readora%20Inquiry">Email</a>
+                <a href="https://github.com/PrinceMakhansa" target="_blank">GitHub</a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            © 2025 Readora. All rights reserved. | Designed & Developed by <span class="developed">Prince Makhansa</span>
+        </div>
+    </footer>
+
+    <script>
+        // Orders page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrders();
+            setupFilters();
+            setupModal();
+        });
+
+        function loadOrders() {
+            const orders = getOrders();
+            const emptyOrders = document.getElementById('empty-orders');
+            const ordersContent = document.getElementById('orders-content');
+            
+            if (orders.length === 0) {
+                emptyOrders.style.display = 'block';
+                ordersContent.style.display = 'none';
+                return;
+            }
+
+            emptyOrders.style.display = 'none';
+            ordersContent.style.display = 'block';
+            
+            updateOrderStats(orders);
+            displayOrders(orders);
+        }
+
+        function getOrders() {
+            const orders = localStorage.getItem('orders');
+            return orders ? JSON.parse(orders) : [];
+        }
+
+        function updateOrderStats(orders) {
+            const totalOrders = orders.length;
+            const totalSpent = orders.reduce((sum, order) => {
+                const amount = parseInt(order.total.replace('₹', '').replace(',', ''));
+                return sum + amount;
+            }, 0);
+            const totalBooks = orders.reduce((sum, order) => {
+                return sum + order.items.reduce((itemSum, item) => itemSum + item.quantity, 0);
+            }, 0);
+
+            document.getElementById('total-orders').textContent = totalOrders;
+            document.getElementById('total-spent').textContent = `₹${totalSpent.toLocaleString()}`;
+            document.getElementById('total-books').textContent = totalBooks;
+        }
+
+        function displayOrders(orders, filter = 'all') {
+            const ordersList = document.getElementById('orders-list');
+            ordersList.innerHTML = '';
+
+            const filteredOrders = filter === 'all' ? orders : orders.filter(order => order.status === filter);
+
+            filteredOrders.forEach(order => {
+                const orderDate = new Date(order.date).toLocaleDateString('en-IN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                orderCard.innerHTML = `
+                    <div class="order-header">
+                        <div class="order-info">
+                            <h3>Order #${order.id}</h3>
+                            <p class="order-date">Placed on ${orderDate}</p>
+                        </div>
+                        <div class="order-status">
+                            <span class="status-badge status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span>
+                            <span class="order-total">${order.total}</span>
+                        </div>
+                    </div>
+                    <div class="order-items-preview">
+                        ${order.items.slice(0, 3).map(item => `
+                            <div class="item-preview">
+                                <img src="${item.cover}" alt="${item.title}">
+                                <div class="item-info">
+                                    <span class="item-title">${item.title}</span>
+                                    <span class="item-quantity">Qty: ${item.quantity}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                        ${order.items.length > 3 ? `<div class="more-items">+${order.items.length - 3} more</div>` : ''}
+                    </div>
+                    <div class="order-actions">
+                        <button class="view-details-btn" onclick="viewOrderDetails('${order.id}')">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                        <button class="reorder-btn" onclick="reorderItems('${order.id}')">
+                            <i class="fas fa-redo"></i> Reorder
+                        </button>
+                        ${order.status === 'confirmed' ? `
+                            <button class="cancel-btn" onclick="cancelOrder('${order.id}')">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+                ordersList.appendChild(orderCard);
+            });
+        }
+
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-status');
+                    const orders = getOrders();
+                    displayOrders(orders, filter);
+                });
+            });
+        }
+
+        function setupModal() {
+            const modal = document.getElementById('order-modal');
+            const closeBtn = document.querySelector('.close-modal');
+            
+            closeBtn.addEventListener('click', closeOrderModal);
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeOrderModal();
+                }
+            });
+        }
+
+        function viewOrderDetails(orderId) {
+            const orders = getOrders();
+            const order = orders.find(o => o.id.toString() === orderId.toString());
+            
+            if (!order) return;
+
+            const modal = document.getElementById('order-modal');
+            const content = document.getElementById('order-details-content');
+            
+            const orderDate = new Date(order.date).toLocaleDateString('en-IN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            content.innerHTML = `
+                <div class="order-details-header">
+                    <h2>Order Details #${order.id}</h2>
+                    <span class="status-badge status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span>
+                </div>
+                
+                <div class="order-details-info">
+                    <div class="info-section">
+                        <h3>Order Information</h3>
+                        <p><strong>Order Date:</strong> ${orderDate}</p>
+                        <p><strong>Payment Method:</strong> ${order.payment === 'cod' ? 'Cash on Delivery' : order.payment === 'card' ? 'Credit/Debit Card' : 'UPI Payment'}</p>
+                        <p><strong>Order Total:</strong> ${order.total}</p>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>Shipping Address</h3>
+                        <p><strong>${order.customer.name}</strong></p>
+                        <p>${order.customer.address}</p>
+                        <p>${order.customer.city}, ${order.customer.pincode}</p>
+                        <p>Phone: ${order.customer.phone}</p>
+                        <p>Email: ${order.customer.email}</p>
+                    </div>
+                </div>
+
+                <div class="order-items-detailed">
+                    <h3>Items Ordered</h3>
+                    ${order.items.map(item => `
+                        <div class="detailed-item">
+                            <img src="${item.cover}" alt="${item.title}">
+                            <div class="item-details">
+                                <h4>${item.title}</h4>
+                                <p>by ${item.author}</p>
+                                <p>Category: ${item.category}</p>
+                                <p>Price: ₹${item.price} × ${item.quantity}</p>
+                                <p class="item-subtotal">Subtotal: ₹${item.price * item.quantity}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOrderModal() {
+            const modal = document.getElementById('order-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function reorderItems(orderId) {
+            const orders = getOrders();
+            const order = orders.find(o => o.id.toString() === orderId.toString());
+            
+            if (!order) return;
+
+            // Clear current cart and add all items from this order
+            localStorage.removeItem('cart');
+            const newCart = order.items.map(item => ({
+                ...item,
+                quantity: item.quantity
+            }));
+            
+            saveCart(newCart);
+            showToast('Items added to cart! Redirecting to cart...', 'success');
+            
+            setTimeout(() => {
+                window.location.href = 'cart.html';
+            }, 1500);
+        }
+
+        function cancelOrder(orderId) {
+            if (!confirm('Are you sure you want to cancel this order?')) return;
+            
+            const orders = getOrders();
+            const orderIndex = orders.findIndex(o => o.id.toString() === orderId.toString());
+            
+            if (orderIndex !== -1) {
+                orders[orderIndex].status = 'cancelled';
+                localStorage.setItem('orders', JSON.stringify(orders));
+                loadOrders();
+                showToast('Order cancelled successfully', 'info');
+            }
+        }
+
+        // Simulate order status updates (for demo purposes)
+        function simulateOrderProgress() {
+            const orders = getOrders();
+            orders.forEach(order => {
+                if (order.status === 'confirmed') {
+                    // 30% chance to move to shipped
+                    if (Math.random() < 0.3) {
+                        order.status = 'shipped';
+                    }
+                } else if (order.status === 'shipped') {
+                    // 20% chance to move to delivered
+                    if (Math.random() < 0.2) {
+                        order.status = 'delivered';
+                    }
+                }
+            });
+            localStorage.setItem('orders', JSON.stringify(orders));
+        }
+
+        // Run simulation every 30 seconds (for demo)
+        setInterval(simulateOrderProgress, 30000);
+    </script>
+</body>
+</html>

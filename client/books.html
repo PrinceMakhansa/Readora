@@ -3,21 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
+    <title>Books - Readora</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/books.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fallback for Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/script.js"></script>
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+    <script src="../js/utils.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Lottie loader -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
+    <!-- Loader -->
+    <div id="loader">
+        <lottie-player
+            src="../src/loader.json"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px;"
+            loop
+            autoplay>
+        </lottie-player>
+    </div>
     <header>
         <div class="navbar">
-            <a href="index.html" class="logo">Readora</a>
-            <nav aria-label="Main Navigation">
+            <a href="../index.html" class="logo">Readora</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav aria-label="Main Navigation" id="nav-menu">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../index.html">Home</a></li>
                     <li><a href="books.html">Browse Books</a></li>
                     <li><a href="cart.html">Cart</a></li>
                     <li><a href="orders.html">My Orders</a></li>
@@ -25,6 +44,7 @@
                 </ul>
             </nav>
         </div>
+        <div class="nav-overlay" id="nav-overlay"></div>
     </header>
 
     <main>
@@ -76,7 +96,7 @@
         <div class="footer-container">
             <div class="footer-column">
             <h4>Quick Links</h4>
-            <a href="index.html">Home</a>
+            <a href="../index.html">Home</a>
             <a href="books.html">Browse Books</a>
             <a href="cart.html">Cart</a>
             <a href="orders.html">My Orders</a>
@@ -84,7 +104,7 @@
             </div>
             <div class="footer-column">
             <h4>Social Media</h4>
-            <a href="https://www.instagram.com/prince.makhansa" target="_blank">Instagram</a>
+            <a href="mailto:princemakhansa@gmail.com?subject=Readora%20Inquiry">Email</a>
             <a href="https://github.com/PrinceMakhansa" target="_blank">GitHub</a>
             </div>
         </div>
@@ -112,7 +132,7 @@
         });
 
         // Fetch and display books
-        fetch("js/database.json")
+        fetch("../js/database.json")
             .then(response => response.json())
             .then(books => {
                 allBooks = books;
@@ -292,7 +312,7 @@
         // Updated functions for buy and add to cart
         function buyBook(title) {
             // Find the book in the database
-            fetch('js/database.json')
+            fetch('../js/database.json')
                 .then(response => response.json())
                 .then(books => {
                     const book = books.find(b => b.title === title);
@@ -319,7 +339,7 @@
             alert(`Adding "${title}" to your cart!`);
             
             // Find the book in the database
-            fetch('js/database.json')
+            fetch('../js/database.json')
                 .then(response => response.json())
                 .then(books => {
                     const book = books.find(b => b.title === title);

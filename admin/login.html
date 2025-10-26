@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Readora</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../images/fevicon/readora-512.png">
+    <style>
+        .login-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #f7f7f7 0%, #fff 100%);
+        }
+        .login-box {
+            width: 340px;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .login-box h2 { margin-bottom: 1rem; }
+        .form-group { margin-bottom: 0.75rem; }
+        .form-group input { width: 100%; padding: 0.6rem 0.75rem; border-radius: 8px; border: 1px solid #ddd; }
+        .btn { display:inline-block; padding: 0.6rem 0.9rem; border-radius: 8px; border: none; cursor: pointer; }
+        .btn-primary { background:#6b4f4f; color: #fff; }
+        .error { color: #b80000; margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    
+    <div class="login-wrap">
+        <div class="login-box">
+            <h2><i class="fas fa-user-shield"></i> Admin Login</h2>
+            <div>
+                <div class="form-group">
+                    <label for="admin-id">ID</label>
+                    <input id="admin-id" type="text" placeholder="admin" value="admin">
+                </div>
+                <div class="form-group">
+                    <label for="admin-pass">Password</label>
+                    <input id="admin-pass" type="password" placeholder="password" value="admin">
+                </div>
+                <div class="form-group">
+                    <button id="login-btn" class="btn btn-primary">Sign In</button>
+                    <a href="../index.html" style="margin-left:8px; color:#666; font-size:0.9rem;">Back to site</a>
+                </div>
+                <div id="login-error" class="error" aria-live="polite"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-common.js"></script>
+    <script>
+        document.getElementById('login-btn').addEventListener('click', function() {
+            const id = document.getElementById('admin-id').value.trim();
+            const pass = document.getElementById('admin-pass').value;
+            // Use shared doLogin if available
+            let res = { ok: false };
+            if (typeof window.doLogin === 'function') {
+                res = window.doLogin(id, pass);
+            } else {
+                // fallback simple check
+                if (id === 'admin' && pass === 'admin') res = { ok: true };
+            }
+
+            if (res.ok) {
+                window.location.href = 'dashboard.html';
+            } else {
+                const err = res.message || 'Invalid ID or password';
+                document.getElementById('login-error').textContent = err;
+            }
+        });
+
+        // If already logged in, go to dashboard
+        (function(){
+            try {
+                if (sessionStorage.getItem('adminLoggedIn')) {
+                    window.location.href = 'dashboard.html';
+                }
+            } catch(e){}
+        })();
+    </script>
+</body>
+</html>

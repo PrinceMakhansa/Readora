@@ -1,22 +1,22 @@
 [
   {
-    "title": "Bhagavad Gita",
-    "author": "Vyasa",
-    "cover": "https://covers.openlibrary.org/b/isbn/9789391316419-L.jpg",
-    "price": 300,
+    "title": "Hanuman Chalisa",
+    "author": "Tulsidas",
+  "cover": "/images/books/hanuman-chalisa.jpg",
+    "price": 150,
     "category": "Devotional"
   },
   {
     "title": "The Ramayana",
     "author": "Valmiki",
-    "cover": "https://covers.openlibrary.org/b/isbn/9788129142078-L.jpg",
+    "cover": "https://covers.openlibrary.org/b/isbn/9788131003374-L.jpg",
     "price": 450,
     "category": "Devotional"
   },
   {
     "title": "Mahabharata",
     "author": "Vyasa",
-    "cover": "https://covers.openlibrary.org/b/isbn/9789380708690-L.jpg",
+  "cover": "/images/books/mahabharat.jpg",
     "price": 600,
     "category": "Devotional"
   },
@@ -28,9 +28,9 @@
     "category": "Devotional"
   },
   {
-    "title": "Srimad Bhagavatam",
+    "title": "Srimad Bhagavad Gita",
     "author": "Vyasa",
-    "cover": "https://covers.openlibrary.org/b/isbn/9789384564216-L.jpg",
+    "cover": "https://covers.openlibrary.org/b/isbn/9781566196703-L.jpg",
     "price": 700,
     "category": "Devotional"
   },
@@ -100,7 +100,8 @@
   {
     "title": "Sherlock Holmes",
     "author": "Arthur Conan Doyle",
-    "cover": "https://covers.openlibrary.org/b/isbn/9780486474915-L.jpg",
+    "olid": "OL36642011M",
+    "cover": "https://covers.openlibrary.org/b/olid/OL36642011M-L.jpg",
     "price": 360,
     "category": "Mystery"
   },
@@ -198,7 +199,7 @@
   {
     "title": "Me Before You",
     "author": "Jojo Moyes",
-    "cover": "https://covers.openlibrary.org/b/isbn/9780143124542-L.jpg",
+    "cover": "https://covers.openlibrary.org/b/isbn/9789866076831-L.jpg",
     "price": 390,
     "category": "Romance"
   },
@@ -254,7 +255,7 @@
   {
     "title": "Spider-Man: Blue",
     "author": "Jeph Loeb, Tim Sale",
-    "cover": "https://covers.openlibrary.org/b/isbn/9780785110713-L.jpg",
+    "cover": "https://covers.openlibrary.org/b/isbn/9780785110712-L.jpg",
     "price": 430,
     "category": "Comics"
   },
