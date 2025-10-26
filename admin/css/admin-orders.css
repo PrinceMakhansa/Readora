@@ -516,3 +516,73 @@
     0% { left: -100%; }
     100% { left: 100%; }
 }
+
+/* Modal base styles (orders page only) */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    /* Hide the sidebar and let main content use full width */
+     /* Sidebar mobile behavior is handled globally in admin.css. Removed
+         page-level overrides to keep behavior consistent across admin pages. */
+
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    /* Make controls stack nicely */
+    .orders-controls {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .filters-section {
+        width: 100%;
+    }
+
+    .bulk-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    /* Ensure modal content fits small screens */
+    .modal-content {
+        width: 95%;
+        max-width: 720px;
+        margin: 0 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .orders-controls {
+        padding: 0.75rem;
+    }
+
+    .export-btn, .refresh-btn, .apply-bulk-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        min-height: 40px;
+    }
+
+    /* Make table more friendly on very small screens */
+    .orders-table-container {
+        overflow-x: auto;
+    }
+
+    .orders-table {
+        min-width: 700px;
+    }
+}

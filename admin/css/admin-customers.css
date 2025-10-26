@@ -571,6 +571,7 @@
     .customers-controls {
         flex-direction: column;
         align-items: stretch;
+        padding: 1rem; /* reduce heavy padding on small screens */
     }
     
     .search-filters {
@@ -580,10 +581,12 @@
     
     .search-box input {
         width: 100%;
+        max-width: none; /* ensure it can shrink to container width */
     }
     
     .customers-container {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
     .form-row {
@@ -593,5 +596,10 @@
     .header-actions {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    /* Make customer cards a bit tighter on mobile to avoid large padding overflow */
+    .customer-card {
+        padding: 1rem;
     }
 }

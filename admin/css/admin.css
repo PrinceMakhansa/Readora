@@ -510,7 +510,7 @@ body {
     position: fixed;
     top: 1rem;
     left: 1rem;
-    z-index: 1001;
+    z-index: 11000;
     background: var(--primary-color);
     color: white;
     border: none;
@@ -519,6 +519,14 @@ body {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(62, 44, 35, 0.3);
+        /* temporary visual aid removed for production; keep subtle focus styles below */
+}
+
+/* Accessible focus styles for the mobile toggle (keyboard users) */
+.mobile-menu-toggle:focus,
+.mobile-menu-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 6px rgba(201, 124, 93, 0.12);
 }
 
 .sidebar.mobile-open {

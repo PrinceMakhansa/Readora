@@ -2,12 +2,19 @@
 // Add this script to all admin pages for consistent mobile navigation
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('admin-common.js: DOMContentLoaded');
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
 
-    if (mobileMenuToggle) {
+    // Prevent double-binding if page also includes its own mobile menu script
+    if (mobileMenuToggle && !mobileMenuToggle.dataset.mobileInit) {
+        console.log('admin-common.js: initializing mobile menu');
+        // mark as initialized to avoid duplicate handlers
+        mobileMenuToggle.dataset.mobileInit = '1';
+
         mobileMenuToggle.addEventListener('click', function() {
+            console.log('admin-common.js: mobileMenuToggle clicked');
             sidebar.classList.toggle('mobile-open');
             mainContent.classList.toggle('shifted');
             

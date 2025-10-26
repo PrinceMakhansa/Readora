@@ -13,8 +13,14 @@
     <script>
         try { if (!sessionStorage.getItem('adminLoggedIn')) { window.location.href = 'login.html'; } } catch(e){}
     </script>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <div class="admin-container">
-        <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h2>Readora Admin</h2>
             </div>
@@ -42,7 +48,7 @@
             </nav>
         </aside>
 
-        <main class="main-content">
+    <main class="main-content" id="mainContent">
             <header class="admin-header">
                 <h1>Order Management</h1>
                 <div class="header-actions">
