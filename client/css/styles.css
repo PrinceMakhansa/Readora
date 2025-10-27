@@ -35,7 +35,13 @@ header
 }
 
 main {
-    margin-top: 80px;
+  /* The hero section itself has top padding to keep its content below
+     the fixed navbar. Remove the top padding on main so the hero's
+     background reaches up under the fixed navbar and removes the
+     thin gap that appeared (the hero already uses padding to offset
+     its internal content). */
+  margin-top: 0;
+  padding-top: 0;
 }
 
 ::selection 
@@ -203,26 +209,22 @@ main {
     opacity: 1;
 }
 
-/* Cart badge removed — badge styling intentionally deleted when removing inline badge markup */
 
 .hero {
   display: flex;
   justify-content: space-between;
   gap: 60px;
   align-items: center;
-  padding: 80px 5%; 
-  /* padding: 40px 80px 50px 80px;     */
-  margin-top: 80px;
+  padding: 150px 5%;
+  margin-top: 0;
   background-color: #F8EDE3;
-  margin-top: -5px;
 }
 
 .hero-content {
   max-width: 600px;
-  margin-left: 90px;
+  margin-left: 20px;
   text-align: left;
 }
-/* Move animation-container 10px to the right */
   .animation-container {
     transform: translateX(-90px);
 }
@@ -826,7 +828,8 @@ footer *::selection {
   
   .hero {
     flex-direction: column;
-    padding: 40px 20px;
+    /* Ensure hero content sits below the fixed navbar on smaller screens */
+    padding: 95px 20px 20px;
     gap: 20px;
     text-align: center;
   }
@@ -968,8 +971,9 @@ footer *::selection {
   }
   
   .hero {
-    padding: 30px 15px;
-    margin-top: 60px;
+    /* Make room for the fixed navbar so the hero content doesn't overlap it */
+    padding: 80px 15px 15px;
+    margin-top: 0;
   }
   
   .hero h1 {
