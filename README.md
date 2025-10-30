@@ -6,9 +6,15 @@ An elegant e-commerce bookstore platform built with vanilla JavaScript, featurin
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://readora.pr1nce.tech/)
 [![GitHub Stars](https://img.shields.io/github/stars/PrinceMakhansa/Readora?style=for-the-badge)](https://github.com/PrinceMakhansa/Readora/stargazers)
-[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/license-Copyright-red?style=for-the-badge)](LICENSE)
 
-![Readora Banner](images/fevicon/readora-512.png)
+<div align="center">
+  <img src="images/fevicon/readora-512.png" alt="Readora Logo" width="120" height="120">
+  
+  <h3>📚 Discover • 🛒 Shop • 📖 Read</h3>
+  
+  <p><i>Your one-stop destination for exploring and purchasing books across all genres</i></p>
+</div>
 
 ---
 
@@ -365,7 +371,11 @@ Contributions are welcome! Here's how you can help:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Copyright © 2025 Prince Makhansa. All Rights Reserved.
+
+This project is currently proprietary and is submitted as an academic project. Unauthorized copying, distribution, or use of this software is strictly prohibited.
+
+**Note:** This project will be released under the MIT License after academic submission and grading are complete.
 
 ---
 
