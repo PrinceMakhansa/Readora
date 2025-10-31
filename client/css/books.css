@@ -10,15 +10,15 @@ body
 
 /* Search Section Styles */
 .search-section {
-    padding: 16px 16px; /* was 1rem 1rem */
-    margin: 8px 0; /* was 0.5rem 0 */
+    padding: 16px 16px; 
+    margin: 8px 0; 
 }
 
 .search-container {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
-    position: relative; /* allow absolutely positioned page-cart inside */
+    position: relative; 
 }
 
 /* Page-level cart icon positioned next to search box */
@@ -45,15 +45,14 @@ body
     color: var(--primary-color);
 }
 
-/* Fallback for cart icon if Font Awesome fails to load */
+
 .page-cart::before {
     content: "🛒";
     font-size: 18px;
     display: none;
 }
 
-/* Show fallback when Font Awesome icon is not available */
-.page-cart:not(:has(i))::before,
+
 .page-cart i:empty + .page-cart::before {
     display: inline-block;
 }
@@ -145,8 +144,8 @@ body
 .filter-container h2 {
     color: var(--primary-color);
     font-family: 'Playfair Display', serif;
-    font-size: 32px; /* was 2rem */
-    margin-bottom: 16px; /* was 1rem */
+    font-size: 32px; 
+    margin-bottom: 16px; 
     font-weight: 700;
 }
 
@@ -192,21 +191,21 @@ body
 
 /* Books Display Section */
 .books-display {
-    padding: 0; /* Removed horizontal padding */
-    max-width: 100%; /* Use full width */
+    padding: 0; 
+    max-width: 100%; 
     margin: 0 auto;
 }
 
 .category-section {
-    margin-bottom: 64px; /* was 4rem */
+    margin-bottom: 64px;
 }
 
 .category-title {
     color: var(--primary-color);
     font-family: 'Playfair Display', serif;
-    font-size: 40px; /* was 2.5rem */
+    font-size: 40px;
     text-align: center;
-    margin-bottom: 32px; /* was 2rem */
+    margin-bottom: 32px;
     font-weight: 700;
     position: relative;
 }

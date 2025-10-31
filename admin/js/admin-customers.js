@@ -214,7 +214,7 @@ class CustomerManager {
                         <span>${customer.totalOrders} orders</span>
                     </div>
                     <div class="customer-detail">
-                        <i class="fas fa-dollar-sign"></i>
+                        <i class="fas fa-rupee-sign"></i>
                         <span>₹${customer.totalSpent}</span>
                     </div>
                     <div class="customer-detail">

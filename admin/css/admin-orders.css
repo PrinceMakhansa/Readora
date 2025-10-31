@@ -534,10 +534,6 @@
 
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
-    /* Hide the sidebar and let main content use full width */
-     /* Sidebar mobile behavior is handled globally in admin.css. Removed
-         page-level overrides to keep behavior consistent across admin pages. */
-
     .main-content {
         margin-left: 0;
         padding: 1rem;
@@ -558,7 +554,6 @@
         justify-content: flex-end;
     }
 
-    /* Ensure modal content fits small screens */
     .modal-content {
         width: 95%;
         max-width: 720px;

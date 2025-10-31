@@ -35,11 +35,6 @@ header
 }
 
 main {
-  /* The hero section itself has top padding to keep its content below
-     the fixed navbar. Remove the top padding on main so the hero's
-     background reaches up under the fixed navbar and removes the
-     thin gap that appeared (the hero already uses padding to offset
-     its internal content). */
   margin-top: 0;
   padding-top: 0;
 }
@@ -1038,7 +1033,6 @@ footer *::selection {
   }
   
   .hero {
-    /* Make room for the fixed navbar so the hero content doesn't overlap it */
     padding: 80px 15px 15px;
     margin-top: 0;
   }
@@ -1106,7 +1100,7 @@ footer *::selection {
   
   @keyframes scrollLeft {
     to {
-      left: -294px; /* Adjusted for smaller book width */
+      left: -294px;
     }
   }
 
@@ -1153,6 +1147,4 @@ footer *::selection {
     padding: 10px 12px;
   }
 }
-
-/* Responsive design for book cards */
 
