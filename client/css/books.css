@@ -11,7 +11,8 @@ body
 /* Search Section Styles */
 .search-section {
     padding: 16px 16px; 
-    margin: 8px 0; 
+    margin: 80px 0 8px 0; /* Add top margin to clear fixed navbar */
+    padding-top: 24px; /* Additional top padding for better spacing */
 }
 
 .search-container {

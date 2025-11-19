@@ -447,6 +447,40 @@
                 console.log('Updated existing customer in admin list:', existingCustomer);
             }
         }
+
+        // Search functionality
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+
+            if (searchInput && searchBtn) {
+                // Search button click handler
+                searchBtn.addEventListener('click', performSearch);
+                
+                // Enter key press handler for search input
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        performSearch();
+                    }
+                });
+            }
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Redirect to books page with search query
+                window.location.href = `books.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+
+        // Initialize search when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSearch();
+        });
     </script>
 </body>
 </html>
