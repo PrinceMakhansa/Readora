@@ -310,22 +310,6 @@ Update category filters in:
 
 ---
 
-## 📸 Screenshots
-
-### Client Interface
-- Homepage with hero section and featured books
-- Books catalog with search and filters
-- Shopping cart with order summary
-- Order tracking interface
-
-### Admin Interface
-- Dashboard with analytics
-- Book management grid
-- Order management table
-- Analytics charts
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Here's how you can help:
@@ -335,38 +319,7 @@ Contributions are welcome! Here's how you can help:
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-### Contribution Ideas
-- Add payment gateway integration
-- Implement user reviews and ratings
-- Add wishlist functionality
-- Enhance search with filters (price range, publication date)
-- Implement email notifications
-- Add book recommendations based on purchase history
-
----
-
-## 📝 Future Enhancements
-
-- [ ] Payment gateway integration (Razorpay, Stripe)
-- [ ] User reviews and ratings system
-- [ ] Wishlist functionality
-- [ ] Advanced search filters
-- [ ] Email notifications for order updates
-- [ ] Recommendation engine
-- [ ] Multi-language support
-- [ ] Dark mode toggle
-- [ ] PDF invoice generation
-- [ ] Social sharing features
-
----
-
-## 🐛 Known Issues
-
-- Cart data persists in LocalStorage (cleared on browser cache clear)
-- Admin login uses session storage (not persistent across sessions)
-- No backend integration (static data from JSON files)
-
+   
 ---
 
 ## 📄 License
